@@ -561,17 +561,7 @@ html[dir=rtl] .breadcrumb > li::after {
 	content: '\f054';
 	font-family: FontAwesome;
 }
-.swiper-viewport .swiper-button-next::before, .swiper-viewport .swiper-button-prev::before {
-	color: rgb(55, 106, 203);
-}
 
-.swiper-pagination .swiper-pagination-bullet {
-  background-color: rgb(234, 244, 252);
-  box-shadow:inset 0 0 3px rgba(12, 93, 246, 0.3);
-}
-.swiper-pagination .swiper-pagination-bullet-active {
-  background-color: rgb(62, 112, 204);
-}
 
 /* product list */
 .product-thumb {

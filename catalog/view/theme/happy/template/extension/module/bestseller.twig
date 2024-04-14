@@ -1,42 +1,59 @@
-<h3>{{ heading_title }}</h3>
-<div class="row">
- {% for product in products %}
-  <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
-    <div class="product-thumb transition">
-      <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
-      <div class="caption">
-        <h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
-        <p>{{ product.description }}</p>
-        {% if product.rating %}
-        <div class="rating">
-          {% for i in 1..5 %}
-          {% if product.rating < i %}
-          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-          {% else %}
-          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-          {% endif %}
-          {% endfor %}
-        </div>
-        {% endif %}
-        {% if product.price %}
-        <p class="price">
-          {% if not product.special %}
-          {{ product.price }}
-          {% else %}
-          <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
-          {% endif %}
-          {% if product.tax %}
-          <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
-          {% endif %}
-        </p>
-        {% endif %}
+<section class="s-bestseller section__default">
+  <div class="container">
+    <h2 class="section__title">{{ heading_title }}</h2>
+    <div class="swiper swiper-base swiper-cards-gallery">
+      <div class="swiper-wrapper">
+        {% for product in products %}
+          <div class="swiper-slide card__slide card">
+            <div class="card__top">
+              <div class="card__favorite" onclick="wishlist.add('{{ product.product_id }}');">
+                <svg class="svg-sprite-icon icon-like-outline card__favorite-icon">
+                  <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#like-outline"></use>
+                </svg>
+              </div>
+              <div class="swiper swiper-card-gallery">
+                <div class="swiper-wrapper card__wrapper">
+                  <a class="swiper-slide card__slide" href="{{ product.href }}">
+                    <img src="{{ product.thumb }}" alt="{{ product.name }}">
+                  </a>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+            <div class="card__body">
+              <a class="card__descr" href="{{ product.href }}">{{ product.name }}</a>
+              <div class="card__available success">В наличии на складе в Китае</div>
+              {% if product.sku %}
+                <div class="card__article">{{ text_sku }} {{ product.sku }}</div>
+              {% endif %}
+              {% if product.price %}
+                <div class="card__price"> 
+                  {% if not product.special %}
+                    <div class="card__price-new">{{ product.price }}</div>
+                  {% else %} 
+                    <div class="card__price-new">{{ product.special }}</div> 
+                    <div class="card__price-old">{{ product.price }}</div> 
+                  {% endif %}
+                </div>
+              {% endif %}
+              <button class="button button--small w-full mt-auto" type="button" onclick="cart.add('{{ product.product_id }}');">{{ button_cart }}</button>
+            </div>
+          </div>
+        {% endfor %}
       </div>
-      <div class="button-group">
-        <button type="button" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
-        <button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
-        <button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-arrows">
+        <div class="swiper-arrows__item swiper-arrows__next">
+          <svg class="svg-sprite-icon  icon-arrow-left swiper-arrows__icon">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-left"></use>
+          </svg>
+        </div>
+        <div class="swiper-arrows__item swiper-arrows__prev">
+          <svg class="svg-sprite-icon  icon-arrow-right swiper-arrows__icon">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-right"></use>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
-  {% endfor %}
-</div>
+</section>

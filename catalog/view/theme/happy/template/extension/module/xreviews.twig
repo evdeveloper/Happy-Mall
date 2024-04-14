@@ -1,4 +1,4 @@
-<div class="xreview-module">
+{# <div class="xreview-module">
 <h3>{{ heading_title }}</h3>
 <div style="margin-bottom: 15px"></div>
 {% if xreviewss %}     
@@ -76,4 +76,65 @@
   </div>
 </div>
 <div style="margin-bottom: 30px"></div>
-</div>
+</div> #}
+
+<section class="s-reviews section__default">
+  <div class="container">
+    <h2 class="section__title reviews__title">{{ heading_title }}</h2>
+    {% if xreviewss %}
+      <div class="swiper swiper-base swiper-reviews">
+        <div class="swiper-wrapper">
+          {% for xreviews in xreviewss %}
+            <div class="swiper-slide reviews">
+              {% if xreviews.photo or xreviews.name %}
+                <div class="reviews__author">
+                  <img src="{{ xreviews.photo }}" alt="{{ xreviews.name }}">
+                </div>
+              {% endif %}
+              {% if xreviews.name %}
+                <div class="reviews__name">{{ xreviews.name }}</div>
+              {% endif %}
+
+              {% if rating %}
+                <div class="rating">
+                {% for i in 1..5 %}
+                  {% if xreviews.rating < i %}
+                    <div class="rating__item">
+                      <svg class="svg-sprite-icon icon-star-fill rating__icon">
+                        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#star-outline"></use>
+                      </svg>
+                    </div>
+                  {% else %}
+                    <div class="rating__item">
+                      <svg class="svg-sprite-icon  icon-star-outline rating__icon">
+                        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#star-fill"></use>
+                      </svg>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+                </div>
+              {% endif %}
+
+              {% if xreviews.text %}
+                <div class="reviews__text">{{ xreviews.text }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-arrows">
+          <div class="swiper-arrows__item swiper-arrows__next">
+            <svg class="svg-sprite-icon icon-arrow-left swiper-arrows__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-left"></use>
+            </svg>
+          </div>
+          <div class="swiper-arrows__item swiper-arrows__prev">
+            <svg class="svg-sprite-icon icon-arrow-right swiper-arrows__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-right"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>

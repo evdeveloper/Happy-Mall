@@ -5,7 +5,7 @@ $_['heading_title'] = 'Мои закладки';
 // Text
 $_['text_account']  = 'Личный кабинет';
 $_['text_instock']  = 'В наличии';
-$_['text_wishlist'] = 'Закладки (%s)';
+$_['text_wishlist'] = '%s';
 $_['text_login']    = 'Вы должны <a href="%s">войти</a> или <a href="%s">зарегистрироваться</a>, чтобы сохранить <a href="%s">%s</a> в ваши <a href="%s">закладки</a>!';
 $_['text_success']  = 'Товар <a href="%s">%s</a> добавлен в <a href="%s">закладки</a>!';
 $_['text_remove']   = 'Данные успешно обновлены!';
