@@ -1,6 +1,22 @@
-<div id="search" class="input-group">
-  <input type="text" name="search" value="{{ search }}" placeholder="{{ text_search }}" class="form-control input-lg" />
-  <span class="input-group-btn">
-    <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
-  </span>
+<div class="searchPopup__inner" id="search">
+  <input class="searchPopup__input transition" type="text" name="search" value="{{ search }}" aria-label="search" placeholder="Введите название товара">
+  <button class="searchPopup__btn" type="button">
+    <svg class="svg-sprite-icon  icon-search searchPopup__btn-icon">
+      <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search"></use>
+    </svg>
+  </button>
+  <div class="searchPopup__close">
+    <svg class="svg-sprite-icon  icon-search-close searchPopup__close-icon">
+      <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search-close"></use>
+    </svg>
+  </div>
+</div>
+<div class="searchTags">
+  <ul class="searchTags__list">
+    <li class="searchTags__item">Украшения</li>
+    <li class="searchTags__item">Игрушки</li>
+    <li class="searchTags__item">Канцтовары</li>
+    <li class="searchTags__item">Косметика</li>
+    <li class="searchTags__item">Кровать</li>
+  </ul>
 </div>

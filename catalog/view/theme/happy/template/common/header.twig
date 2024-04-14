@@ -166,32 +166,7 @@
       </div>
     </div>
     <div class="searchPopup">
-      <div class="searchPopup__wrapper">
-        <form action="/">
-          <div class="searchPopup__inner">
-            <input class="searchPopup__input transition" type="text" aria-label="search"
-              placeholder="Введите название товара">
-            <button class="searchPopup__btn" type="submit">
-              <svg class="svg-sprite-icon  icon-search searchPopup__btn-icon">
-                <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search"></use>
-              </svg>
-            </button>
-            <button class="searchPopup__close" type="button">
-              <svg class="svg-sprite-icon  icon-search-close searchPopup__close-icon">
-                <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search-close"></use>
-              </svg>
-            </button>
-          </div>
-          <div class="searchTags">
-            <ul class="searchTags__list">
-              <li class="searchTags__item">Украшения</li>
-              <li class="searchTags__item">Игрушки</li>
-              <li class="searchTags__item">Канцтовары</li>
-              <li class="searchTags__item">Косметика</li>
-            </ul>
-          </div>
-        </form>
-      </div>
+      <div class="searchPopup__wrapper">{{ search }}</div>
     </div>
   </header>
   {{ menu }}

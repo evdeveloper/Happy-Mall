@@ -156,30 +156,11 @@ div.required .control-label:before {
   display: inline;
 }
 
-@media (min-width: 992px){
-	#logo {float: left;}
-	#contact {float: left;margin-left:33px;}
-	#search {margin-left: -35px;}
-}
 @media (min-width: 768px) and (max-width: 991px) {
 	#logo {float: left;}
 	#contact {float: right;}
 }
-/* search */
-#search {
-	margin-bottom: 10px;
-}
-#search .input-lg {
-	height: 40px;
-	line-height: 20px;
-	padding: 0 10px;
-}
-#search .btn-lg {
-	font-size: 15px;
-	line-height: 18px;
-	padding: 10px 20px;
-	text-shadow: 0 1px 0 #FFF;
-}
+
 /* cart */
 #cart {
 	margin-bottom: 10px;

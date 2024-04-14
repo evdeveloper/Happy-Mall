@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $(this).closest('.searchPopup').find('.searchPopup__input').val('');
   });
   $(document).on('click', '.searchTags__item', function(){
-    $(this).closest('.searchPopup').find('.searchPopup__input').val($(this).text());
+    $(this).closest('.searchPopup').find('.searchPopup__input').val($(this).text()).focus();
   });
   $(document).on('click', '.search-open', function(){
     $(BODY).find('.searchPopup').addClass('active');
@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   $(document).on('click', '.overlay', function(){
     removeOverlay();
+    $('.searchPopup__input').val('');
     closeModal(BODY.querySelector('.popup').getAttribute('data-popup-target'));
     classesArray.forEach(classes => $(classes).removeClass('active'));
   });
