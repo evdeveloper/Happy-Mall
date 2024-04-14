@@ -1,11 +1,3 @@
-body {
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 400;
-	color: #666;
-	font-size: 12px;
-	line-height: 20px;
-	width: 100%;
-}
 h1, h2, h3, h4, h5, h6 {
 	color: #444;
 }
@@ -14,30 +6,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 14px;
 }
 /* Override the bootstrap defaults */
-h1 {
-	font-size: 33px;
-}
-h2 {
-	font-size: 27px;
-}
-h3 {
-	font-size: 21px;
-}
-h4 {
-	font-size: 15px;
-}
-h5 {
-	font-size: 12px;
-}
-h6 {
-	font-size: 10.2px;
-}
-a {
-	color: #4979cf;
-}
-a:hover {
-	text-decoration: none;
-}
 legend {
 	font-size: 18px;
 	padding: 7px 0px
@@ -265,6 +233,7 @@ div.required .control-label:before {
 }
 /* menu -fix */
 #menu {
+	display: none;
 	background-color: #376aca;
 	background-image: linear-gradient(to bottom, #4979cf, #2f64ca);
 	background-repeat: repeat-x;
@@ -378,31 +347,9 @@ div.required .control-label:before {
 		color: #fff;
 	}
 }
-/* content */
+
 #content {min-height: 600px;}
-/* footer */
-footer {
-	margin-top: 30px;
-	padding-top: 30px;
-	background-color: #203866;
-	border-top: 1px solid #e4f1fc;
-	color: #e2e2e2;
-}
-footer hr {
-	border-bottom: 1px solid #274783;
-    border-top: 1px solid #1b2e53;
-}
-footer a {color: #dee7f9;}
-footer a:hover, footer a:focus {color: #fff;}
-footer .title {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 13px;
-	font-weight: bold;
-	color: #bde1ff;
-	margin-bottom: 10px;
-}
-footer .list-unstyled {padding-left: 15px;list-style: square;}
-footer p {text-align: right;}
+
 /* alert */
 .alert {
 	padding: 8px 14px 8px 14px;

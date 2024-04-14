@@ -14,6 +14,11 @@ class ControllerCommonFooter extends Controller {
 			);
 		}
 
+		$data['home'] = $this->url->link('common/home');
+		$data['logged'] = $this->customer->isLogged();
+		$data['login'] = $this->url->link('account/login', '', true);
+		$data['logout'] = $this->url->link('account/logout', '', true);
+		$data['shopping_cart'] = $this->url->link('checkout/cart');
 		$data['contact'] = $this->url->link('information/contact');
 		$data['return'] = $this->url->link('account/return/add', '', true);
 		$data['sitemap'] = $this->url->link('information/sitemap');
@@ -25,6 +30,9 @@ class ControllerCommonFooter extends Controller {
 		$data['order'] = $this->url->link('account/order', '', true);
 		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
+		$data['email'] = $this->config->get('config_email');
+		$data['telephone'] = $this->config->get('config_telephone');
+		$data['address'] = html_entity_decode($this->config->get('config_address'), ENT_QUOTES, 'UTF-8');
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 

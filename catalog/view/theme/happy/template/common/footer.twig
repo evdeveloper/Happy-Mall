@@ -1,4 +1,4 @@
-<footer>
+{# <footer>
   <div class="container">
     <div class="row">
       {% if informations %}
@@ -40,15 +40,479 @@
     <hr>
     <p>{{ powered }}</p>
   </div>
+</footer> #}
+<footer class="footer">
+  <div class="footer__top">
+    <a class="footer__logo logo" href="{{ home }}">
+      <img src="catalog/view/theme/happy/image/logo.svg" alt="{{ name }}">
+    </a>
+    <nav class="nav-footer">
+      <div class="nav-footer__col">
+        <div class="nav-footer__top"> <span>Меню</span>
+          <svg class="svg-sprite-icon  icon-arrow-down-normal nav-footer__icon">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-down-normal"></use>
+          </svg>
+        </div>
+        <div class="nav-footer__list">
+          <a class="nav-footer__link" href="/index.php?route=product/category&path=1">Каталог</a>
+          <a class="nav-footer__link" href="#">Калькулятор доставки</a>
+          <a class="nav-footer__link" href="#">Отследить груз</a>
+          <a class="nav-footer__link" href="#">О нас</a>
+          <a class="nav-footer__link" href="#">Вопросы-ответы</a>
+          <a class="nav-footer__link" href="#" data-popup-open="feedback">{{ text_contact }}</a>
+        </div>
+      </div>
+      <div class="nav-footer__col">
+        <div class="nav-footer__top">
+          <span>Категории</span>
+          <svg class="svg-sprite-icon  icon-arrow-down-normal nav-footer__icon">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-down-normal"></use>
+          </svg>
+        </div>
+        <div class="nav-footer__list">
+          <a class="nav-footer__link" href="#">Канцтовары</a>
+          <a class="nav-footer__link" href="#">Косметика, всё для макияжа</a>
+          <a class="nav-footer__link" href="#">Украшения</a>
+          <a class="nav-footer__link" href="#">Аксессуары (сумки, очки, перчатки)</a>
+          <a class="nav-footer__link" href="#">Детские игрушки</a>
+          <a class="nav-footer__link" href="#">Аксессуары для телефонов и ПК</a>
+          <a class="nav-footer__link" href="#">Товары для животных</a>
+        </div>
+      </div>
+    </nav>
+    <div class="footer__info">
+      <div class="footer__contact">
+        <a href="tel:{{ telephone|replace({' ': '', '-': '', '(': '', ')':''}) }}" class="footer__phone">{{ telephone }}</a>
+        <a href="mailto:{{ email }}" class="footer__email">{{ email }}</a>
+      </div>
+      <div class="messengers">
+        <div class="messengers__title">Напишите нам <br>в мессенджерах</div>
+        <div class="messengers__list">
+          <a class="messengers__item" href="#">
+            <svg class="svg-sprite-icon  icon-vkontakte messengers__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#vkontakte"></use>
+            </svg>
+          </a>
+          <a class="messengers__item" href="#">
+            <svg class="svg-sprite-icon  icon-instagram messengers__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#instagram"></use>
+            </svg>
+          </a>
+          <a class="messengers__item" href="#">
+            <svg class="svg-sprite-icon  icon-telegram messengers__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#telegram"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="address">
+        <div class="address__title">Наш адрес:</div>
+        {{ address }}
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>Happy mall &copy; 2024</span>
+    <a href="#" target="_blank">Политика конфициальности</a>
+    <a href="#" target="_blank">Договор оферты</a>
+  </div>
 </footer>
+</div>
 {% for style in styles %}
 <link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
 {% endfor %}
 {% for script in scripts %}
 <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %}
-<!--
-OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
-Please donate via PayPal to donate@opencart.com
-//-->
-</body></html>
+
+<div class="mobileMenu">
+  <nav class="mobileMenu__menu">
+    <ul class="mobileMenu__list">
+      <li class="mobileMenu__item">
+        <div class="mobileMenu__link"><span>Каталог</span>
+          <svg class="svg-sprite-icon  icon-arrow-down-normal mobileMenu__icon">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-down-normal"></use>
+          </svg>
+        </div>
+        <div class="mobileSubmenu">
+          <ul class="mobileSubmenu__list">
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Канцтовары</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Косметика, всё для макияжа</a>
+            </li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Украшения</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Аксессуары</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Детские игрушки </a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Аксессуары для телефонов и ПК</a>
+            </li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Товары для животных</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Товары для дома</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Всё для активного отдыха </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#">Калькулятор доставки</a></li>
+      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#">Отследить груз</a></li>
+      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#">Услуги</a></li>
+      <li class="mobileMenu__item">
+        <div class="mobileMenu__link"> <span>Еще</span>
+          <svg class="svg-sprite-icon  icon-arrow-down-normal mobileMenu__icon">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-down-normal"></use>
+          </svg>
+        </div>
+        <div class="mobileSubmenu">
+          <ul class="mobileSubmenu__list">
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">О нас</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Вопросы-ответы</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Контакты</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#" data-popup-open="feedback">Связаться с
+          нами</a></li>
+      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#" data-popup-open="auth"> <span>Личный
+            кабинет</span>
+          <svg class="svg-sprite-icon  icon-user mobileMenu__user">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#user"></use>
+          </svg></a></li>
+    </ul>
+  </nav>
+  <a class="mobileMenu__phone" href="tel:{{ telephone|replace({' ': '', '-': '', '(': '', ')':''}) }}">{{ telephone }}</a>
+  <div class="messengers__list">
+    <a class="messengers__item" href="#">
+      <svg class="svg-sprite-icon icon-vkontakte messengers__icon">
+        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#vkontakte"></use>
+      </svg>
+    </a>
+    <a class="messengers__item" href="#">
+      <svg class="svg-sprite-icon icon-instagram messengers__icon">
+        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#instagram"></use>
+      </svg>
+    </a>
+    <a class="messengers__item" href="#">
+      <svg class="svg-sprite-icon icon-telegram messengers__icon">
+        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#telegram"></use>
+      </svg>
+    </a>
+  </div>
+</div>
+<div class="catalogMenu">
+  <div class="catalogMenu__tabs">
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/1.svg" alt="Канцтовары"><span>Канцтовары</span>
+    </div>
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/2.svg" alt="Косметика, всё для макияжа"><span>Косметика, всё для макияжа</span>
+    </div>
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/3.svg" alt="Украшения"><span>Украшения</span>
+    </div>
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/4.svg" alt="Аксессуары"><span>Аксессуары</span>
+    </div>
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/5.svg" alt="Детские игрушки"><span>Детские игрушки</span>
+      </div>
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/6.svg" alt="Аксессуары для телефонов и ПК"><span>Аксессуары для телефонов и ПК</span>
+    </div>
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/7.svg" alt="Товары для животных"><span>Товары для животных</span>
+    </div>
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/8.svg" alt="Товары для дома"><span>Товары для дома</span>
+    </div>
+    <div class="catalogMenu__tab">
+      <img src="catalog/view/theme/happy/image/svg/category/9.svg" alt="Всё для активного отдыха"><span>Всё для активного отдыха</span>
+    </div>
+  </div>
+  <div class="catalogMenu__content">
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Канцтовары</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Косметика, всё для макияжа</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Украшения</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Аксессуары</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Детские игрушки</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Аксессуары для телефонов и ПК</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Товары для животных</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Товары для дома</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+    <div class="catalogMenu__col">
+      <div class="catalogMenu__top">
+        <h2 class="catalogMenu__title">Всё для активного отдыха</h2>
+        <div class="catalogMenu__count">2580 товаров</div>
+      </div>
+      <ul class="catalogMenu__list">
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="popup popup--reg" data-popup-target="reg">
+  <div class="popup__top">
+    <button class="popup__close" type="button" data-popup-close>
+      <svg class="svg-sprite-icon  icon-search-close popup__close-icon">
+        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search-close"></use>
+      </svg>
+    </button>
+    <div class="popup__title">Личный кабинет</div>
+  </div>
+  <div class="popup__form">
+    <div class="popup__title">Регистрация</div>
+    <form action="/">
+      <div class="form-field">
+        <div class="form-field__item">
+          <input class="transition" type="text" placeholder="E-mail">
+        </div>
+        <div class="form-field__item">
+          <input class="transition" type="text" placeholder="Пароль">
+        </div>
+      </div>
+      <div class="popup__bottom">
+        <button class="button" type="submit">Зарегистрироваться</button>
+      </div>
+      <div class="agree gray">
+        <input class="checkbox__input" type="checkbox" checked name="agree" id="agree">
+        <label for="agree">
+          <svg class="svg-sprite-icon  icon-check checkbox__icon">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#check"></use>
+          </svg>Нажимая на кнопку, вы даёте согласие на обработку персональных данных и соглашаетесь c <a
+            href="#">политикой конфиденциальности </a>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="popup popup--auth" data-popup-target="auth">
+  <div class="popup__top">
+    <button class="popup__close" type="button" data-popup-close>
+      <svg class="svg-sprite-icon  icon-search-close popup__close-icon">
+        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search-close"></use>
+      </svg>
+    </button>
+    <div class="popup__title">Личный кабинет</div>
+  </div>
+  <div class="popup__clause">
+    Войдите или <a href="#" data-popup-open="reg">создайте аккаунт</a></div>
+  <div class="popup__form">
+    <div class="popup__title">Вход</div>
+    <form action="/">
+      <div class="form-field">
+        <div class="form-field__item">
+          <input class="transition" type="text" placeholder="E-mail">
+        </div>
+        <div class="form-field__item">
+          <input class="transition" type="text" placeholder="Пароль">
+        </div>
+      </div><a class="form-forgot" href="#" data-popup-open="forgot">Забыли пароль?</a>
+      <div class="popup__bottom">
+        <button class="button" type="submit">Войти</button>
+        <button class="button button--outline" type="button" data-popup-open="reg">Зарегистрироваться</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="popup popup--forgot" data-popup-target="forgot">
+  <div class="popup__top">
+    <button class="popup__close" type="button" data-popup-close>
+      <svg class="svg-sprite-icon  icon-search-close popup__close-icon">
+        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search-close"></use>
+      </svg>
+    </button>
+    <div class="popup__title">Восстановить пароль</div>
+  </div>
+  <div class="popup__form">
+    <form action="/">
+      <div class="form-field">
+        <div class="form-field__item">
+          <input class="transition" type="text" placeholder="E-mail">
+        </div>
+      </div>
+      <div class="popup__bottom">
+        <button class="button" type="submit" data-popup-open="reg">Отправить</button>
+      </div>
+      <div class="agree gray">
+        <input class="checkbox__input" type="checkbox" checked name="agree" id="agree">
+        <label for="agree">
+          <svg class="svg-sprite-icon  icon-check checkbox__icon">
+            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#check"></use>
+          </svg>Нажимая на кнопку, вы даёте согласие на обработку персональных данных и соглашаетесь c <a
+            href="#">политикой конфиденциальности </a>
+        </label>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="popup popup--success" data-popup-target="success">
+  <button class="popup__close" type="button" data-popup-close>
+    <svg class="svg-sprite-icon  icon-search-close popup__close-icon">
+      <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search-close"></use>
+    </svg>
+  </button>
+  <div class="popup__content">
+    <div class="popup__title">Спасибо, ваша заявка отправлена</div>
+    <button class="button button--gray button--outline" type="button" data-popup-close>Закрыть</button>
+  </div>
+</div>
+<div class="popup popup--feedback" data-popup-target="feedback">
+  <div class="popup__top">
+    <button class="popup__close" type="button" data-popup-close>
+      <svg class="svg-sprite-icon  icon-search-close popup__close-icon">
+        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#search-close"></use>
+      </svg>
+    </button>
+    <div class="popup__title">Связаться с нами</div>
+  </div>
+  <div class="popup__mode">Отвечаем на вопросы с 9:00 до 18:00 по Московскому времени</div>
+  <div class="popup__form">
+    <form action="/">
+      <div class="form-field">
+        <div class="form-field__item">
+          <input class="transition" type="text" name="name" placeholder="Имя">
+        </div>
+        <div class="form-field__item">
+          <input class="transition" type="text" name="email" placeholder="E-mail">
+        </div>
+        <div class="form-field__textarea">
+          <textarea class="transition" name="message" placeholder="Ваше сообщение"></textarea>
+        </div>
+      </div>
+      <button class="button button--outline" type="submit">Отправить</button>
+      <div class="popup__inner">
+        <div class="agree gray">
+          <input class="checkbox__input" type="checkbox" checked name="agree" id="agree">
+          <label for="agree">
+            <svg class="svg-sprite-icon  icon-check checkbox__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#check"></use>
+            </svg>
+            Нажимая на кнопку, вы даёте согласие на обработку персональных данных и соглашаетесь c <a href="#">политикой конфиденциальности</a>
+          </label>
+        </div>
+        <div class="messengers__list">
+          <a class="messengers__item" href="#">
+            <svg class="svg-sprite-icon icon-vkontakte messengers__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#vkontakte"></use>
+            </svg>
+          </a>
+          <a class="messengers__item" href="#">
+            <svg class="svg-sprite-icon icon-instagram messengers__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#instagram"></use>
+            </svg></a>
+          <a class="messengers__item" href="#">
+            <svg class="svg-sprite-icon icon-telegram messengers__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#telegram"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
