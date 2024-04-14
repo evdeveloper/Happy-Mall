@@ -2,6 +2,7 @@
 class ControllerExtensionModuleLatest extends Controller {
 	public function index($setting) {
 		$this->load->language('extension/module/latest');
+		$this->load->language('product/product');
 
 		$this->load->model('catalog/product');
 
