@@ -6,6 +6,10 @@ class ControllerCommonHeader extends Controller {
 
 		$data['analytics'] = array();
 
+		$this->document->addStyle('catalog/view/theme/happy/stylesheet/styles.min.css');
+		$this->document->addScript('catalog/view/javascript/libs.min.js');
+		$this->document->addScript('catalog/view/javascript/main.js');
+
 		$analytics = $this->model_setting_extension->getExtensions('analytics');
 
 		foreach ($analytics as $analytic) {

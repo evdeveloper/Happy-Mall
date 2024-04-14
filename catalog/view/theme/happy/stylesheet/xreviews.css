@@ -1,0 +1,80 @@
+.form-rating{margin-bottom: 72px;}
+.form-rating .form-rating-container{margin-top: 23px;width: 225px;margin-left: -20px;}
+.form-rating .form-rating-container label,.form-rating .form-rating-container:hover label{float:right;margin-bottom:0;padding:3px 5px 0 0;cursor:pointer}
+.form-rating .form-rating-container label i,.form-rating .form-rating-container:hover label i{-webkit-transition:all .2s ease-in-out;transition:all .2s ease-in-out;font-size:42px}
+.form-rating .form-rating-container label i.fa-star-o,.form-rating .form-rating-container:hover label i.fa-star-o{color:#d9d9d9;text-shadow:1px 1px 1px rgba(0,0,0,.1)}
+.form-rating .form-rating-container label i.fa-star,.form-rating .form-rating-container:hover label i.fa-star{color:#e6e6e6;text-shadow:1px 1px 1px rgba(0,0,0,.2)}
+.form-rating .form-rating-container input{display:none}.form-rating .form-rating-container:hover label i.fa-star-o{color:#d9d9d9}
+.form-rating .form-rating-container:hover label i.fa-star{color:#e6e6e6}
+.form-rating .form-rating-container:hover label:hover i.fa-star-o,.form-rating .form-rating-container:hover label:hover~label i.fa-star-o{color:#feb645}
+.form-rating .form-rating-container:hover label:hover i.fa-star,.form-rating .form-rating-container:hover label:hover~label i.fa-star{color:gold}
+.form-rating input:checked~label i.fa-star-o{color:#fea212}.form-rating input:checked~label i.fa-star{color:#f0ca00}
+.form-rating .fa-stack {
+    width: 3em;
+    height: 3em;
+}
+.xreview-item{
+	padding: 10px;
+    border: 1px solid #fafafa;
+    margin-bottom: 30px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.xreview-item:hover{
+	background: #fefefe;
+}
+.xreview-image img{
+	max-width: 100%
+}
+.xreviews-meta{
+	margin-bottom: 10px;
+}
+.xreview-author{
+	font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.xreview-city, .xreview-date{
+	font-size: 14px;
+    color: #b1b1b1;
+}
+.xreview-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.xreview-text{
+	font-size: 14px;
+	margin-bottom: 15px;
+}
+.xreviews-comment{
+	padding-left: 20px;
+	border-left: 4px solid #fafafa;
+}
+.xreview-rating {
+    position: relative;
+    top: -3px;
+    left: 10px;
+}
+.xreview-good,.xreview-bad{
+	border-radius: 0;
+	margin-bottom: 10px;
+	border: 0;
+}
+#form-xreviews {
+    border: 1px solid #fafafa;
+    padding: 20px;
+    background: #fafafa;
+}
+#form-xreviews h2{
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+.no-reviews-text{
+    font-size: 15px;
+    margin-bottom: 35px;
+}
+.form-rating+.form-group {
+    clear: both;
+}

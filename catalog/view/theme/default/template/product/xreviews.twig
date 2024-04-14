@@ -1,0 +1,248 @@
+{{ header }}
+<div class="container">
+  <ul class="breadcrumb">
+	{% for breadcrumb in breadcrumbs %}
+	<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+	{% endfor %}
+  </ul>
+  <div class="row">{{ column_left }}
+	{% if column_left and column_right %}
+	{% set class = 'col-sm-6' %}
+	{% elseif column_left or column_right %}
+	{% set class = 'col-sm-9' %}
+	{% else %}
+	{% set class = 'col-sm-12' %}
+	{% endif %}
+	<div id="content" class="{{ class }}">{{ content_top }}
+	  <h1>{{ heading_title }}</h1>
+	  <div style="margin-bottom: 35px"></div>
+	  <div id="xreviews"></div>
+	  <form class="form-horizontal" id="form-xreviews">
+		<h2>{{ text_write }}</h2>
+		{% if guest %}
+			<div class="row">
+				<div class="col-sm-6">
+					{% if title > 0 %}
+					<div class="form-group {% if title == '2' %} required {% endif %}">
+					  <div class="col-sm-12">
+						<label class="control-label" for="input-title">{{ entry_title }}</label>
+						<input type="text" name="title" value="" id="input-title" class="form-control" />
+					  </div>
+					</div>
+					{% endif %}
+					{% if name > 0 %}
+					<div class="form-group {% if name == '2' %} required {% endif %}">
+					  <div class="col-sm-12">
+						<label class="control-label" for="input-name">{{ entry_name }}</label>
+						<input type="text" name="name" value="" id="input-name" class="form-control" />
+					  </div>
+					</div>
+					{% endif %}
+					{% if city > 0 %}
+					<div class="form-group {% if city == '2' %} required {% endif %}">
+					  <div class="col-sm-12">
+						<label class="control-label" for="input-city">{{ entry_city }}</label>
+						<input type="text" name="city" value="" id="input-city" class="form-control" />
+					  </div>
+					</div>
+					{% endif %}
+					{% if email > 0 %}
+					<div class="form-group {% if email == '2' %} required {% endif %}">
+					  <div class="col-sm-12">
+						<label class="control-label" for="input-email">{{ entry_email }}</label>
+						<input type="text" name="email" value="" id="input-email" class="form-control" />
+					  </div>
+					</div>
+					{% endif %}
+				</div>
+				<div class="col-sm-6">
+					{% if rating %}	
+						<div class="form-rating">
+							<div class="form-rating-container text-center">
+								<input id="rating-5" type="radio" name="rating" value="5" checked="checked" />
+								<label class="fa fa-stack" for="rating-5">
+									<i class="fa fa-star fa-stack-1x"></i>
+									<i class="fa fa-star-o fa-stack-1x"></i>
+								</label>
+								<input id="rating-4" type="radio" name="rating" value="4" />
+								<label class="fa fa-stack" for="rating-4">
+									<i class="fa fa-star fa-stack-1x"></i>
+									<i class="fa fa-star-o fa-stack-1x"></i>
+								</label>
+								<input id="rating-3" type="radio" name="rating" value="3" />
+								<label class="fa fa-stack" for="rating-3">
+									<i class="fa fa-star fa-stack-1x"></i>
+									<i class="fa fa-star-o fa-stack-1x"></i>
+								</label>
+								<input id="rating-2" type="radio" name="rating" value="2" />
+								<label class="fa fa-stack" for="rating-2">
+									<i class="fa fa-star fa-stack-1x"></i>
+									<i class="fa fa-star-o fa-stack-1x"></i>
+								</label>
+								<input id="rating-1" type="radio" name="rating" value="1" />
+								<label class="fa fa-stack" for="rating-1">
+									<i class="fa fa-star fa-stack-1x"></i>
+									<i class="fa fa-star-o fa-stack-1x"></i>
+								</label>
+							</div>
+						</div>
+					{% endif %}
+					{% if photo %}		
+						<div class="form-group {% if photo == '2' %} required {% endif %}">
+						  <div class="col-sm-12">
+							<label class="control-label">{{ entry_photo }}</label><br>
+							<div id="xreviews-photo-upload"></div>
+							<button type="button" id="button-upload" data-loading-text="{{ text_loading }}" class="btn btn-default"><i class="fa fa-upload"></i> {{ button_upload }}</button>
+							<input type="hidden" name="photo" value="" id="input-photo" />
+						  </div>
+						</div>
+					{% endif %}	
+				</div>
+			</div>
+		{% if text > 0 %}
+		<div class="form-group {% if text == '2' %} required {% endif %}">
+		  <div class="col-sm-12">
+			<label class="control-label" for="input-text">{{ entry_text }}</label>
+			<textarea name="text" rows="5" id="input-text" class="form-control"></textarea>
+		  </div>
+		</div>
+		{% endif %}
+		<div class="row">
+			<div class="col-sm-6">
+				{% if good > 0 %}
+				<div class="form-group {% if good == '2' %} required {% endif %}">
+				  <div class="col-sm-12">
+					<label class="control-label" for="input-good"><i style="color:green" class="fa fa-plus"></i>&nbsp;{{ entry_good }}</label>
+					<textarea name="good" rows="5" id="input-good" class="form-control"></textarea>
+				  </div>
+				</div>
+				{% endif %}
+			</div>
+			<div class="col-sm-6">
+				{% if bad > 0 %}
+				<div class="form-group {% if bad == '2' %} required {% endif %}">
+				  <div class="col-sm-12">
+					<label class="control-label" for="input-bad"><i style="color:red" class="fa fa-minus"></i>&nbsp;{{ entry_bad }}</label>
+					<textarea name="bad" rows="5" id="input-bad" class="form-control"></textarea>
+				  </div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		
+		
+		{{ captcha }}
+		<div class="buttons clearfix">
+		  <div class="pull-right">
+			<button type="button" id="button-xreviews" data-loading-text="{{ text_loading }}" class="btn btn-lg btn-primary">{{ text_write }}</button>
+		  </div>
+		</div>
+		{% else %}
+		{{ text_login }}
+		{% endif %}
+	  </form>
+	  {{ content_bottom }}</div>
+	{{ column_right }}</div>
+</div>
+<script type="text/javascript"><!--
+$('button[id^=\'button-upload\']').on('click', function() {
+	var node = this;
+
+	$('#form-upload').remove();
+
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
+
+	$('#form-upload input[name=\'file\']').trigger('click');
+
+	if (typeof timer != 'undefined') {
+		clearInterval(timer);
+	}
+
+	timer = setInterval(function() {
+		if ($('#form-upload input[name=\'file\']').val() != '') {
+			clearInterval(timer);
+
+			$.ajax({
+				url: 'index.php?route=product/xreviews/upload',
+				type: 'post',
+				dataType: 'json',
+				data: new FormData($('#form-upload')[0]),
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					$(node).button('loading');
+				},
+				complete: function() {
+					$(node).button('reset');
+				},
+				success: function(json) {
+					$('.text-danger').remove();
+
+					if (json['error']) {
+						$(node).parent().find('input').after('<div class="text-danger">' + json['error'] + '</div>');
+					}
+
+					if (json['success']) {
+						alert(json['success']);
+
+						$(node).parent().find('input').val(json['file']);
+						$('#xreviews-photo-upload').html('<img height="100" style="margin-bottom:10px" src="/image/'+json['file']+'" />')
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+	}, 500);
+});
+$('#xreviews').delegate('.pagination a', 'click', function(e) {
+	e.preventDefault();
+
+	$('#xreviews').fadeOut('slow');
+
+	$('#xreviews').load(this.href);
+
+	$('#xreviews').fadeIn('slow');
+}); 
+
+$('#xreviews').load('index.php?route=product/xreviews/xreviews');
+
+$('#button-xreviews').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=product/xreviews/write',
+		type: 'post',
+		dataType: 'json',
+		data: $("#form-xreviews").serialize(),
+		beforeSend: function() {
+			$('#button-xreviews').button('loading');
+		},
+		complete: function() {
+			$('#button-xreviews').button('reset');
+		},
+		success: function(json) {
+			$('.review-success, .review-danger').remove();
+
+			if (json['error']) {
+				$('#xreviews').after('<div class="alert alert-danger review-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+
+			if (json['success']) {
+				$('#xreviews').fadeOut('slow');
+
+				$('#xreviews').load(this.href);
+
+				$('#xreviews').fadeIn('slow');
+				
+				$('#xreviews').load('index.php?route=product/xreviews/xreviews');
+			
+				$('#xreviews').after('<div class="alert alert-success review-successs"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+				
+				$('#form-xreviews').get(0).reset();
+			}
+		}
+	});
+});
+//--></script>
+{{ footer }}

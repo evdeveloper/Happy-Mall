@@ -1,0 +1,289 @@
+<div class="modal fade" id="prlogin-popup" data-remote="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="exampleModalLabel">{{ text_account }}</h4>
+      </div>
+      
+      <div class="modal-body">
+        <div role="tabpanel" id="prlogin-tabs">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active">
+              <a href="#prlogin-tab-login" role="tab" data-toggle="tab">{{ text_login }}</a>
+            </li>
+            <li>
+              <a href="#prlogin-tab-register" role="tab" data-toggle="tab">{{ text_register }}</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="prlogin-tab-login">
+            
+            <form id="prlogin-form-login" class="form-horizontal" method="post" action="{{ action }}">
+              <div class="form-group required">
+                <label class="control-label col-sm-2">{{ entry_email }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="email" value="" placeholder="{{ entry_email }}" class="form-control"/>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="control-label col-sm-2">{{ entry_password }}</label>
+                <div class="col-sm-10">
+                  <input type="password" name="password" value="" placeholder="{{ entry_password }}" class="form-control"/>
+                  <a href="{{ forgotten }}">{{ text_forgotten }}</a>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">{{ button_login }}</button>
+            </form>
+          </div>
+          
+          <div role="tabpanel" class="tab-pane" id="prlogin-tab-register">
+            
+            <form id="prlogin-form-register" class="form-horizontal" method="post" action="{{ register }}">
+              <input type="hidden" name="from_prlogin" value="1">
+
+              <div class="form-group required">
+                <label class="control-label col-sm-4">{{ entry_lastname }}</label>
+                <div class="col-sm-8">
+                  <input type="text" name="lastname" value="" id="prlogin-input-lastname" placeholder="{{ entry_lastname }}" class="form-control"/>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="control-label col-sm-4">{{ entry_firstname }}</label>
+                
+                <div class="col-sm-8">
+                  <input type="text" name="firstname" value="" id="prlogin-input-firstname" placeholder="{{ entry_firstname }}" class="form-control"/>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="control-label col-sm-4">{{ entry_telephone }}</label>
+                <div class="col-sm-8">
+                  <input type="text" name="telephone" value="" id="prlogin-input-telephone" placeholder="{{ entry_telephone }}" class="form-control"/>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="control-label col-sm-4">{{ entry_email }}</label>
+                <div class="col-sm-8">
+                  <input type="text" name="email" value="" id="prlogin-input-email" placeholder="{{ entry_email }}" class="form-control"/>
+                </div>
+              </div>
+
+              {% for custom_field in custom_fields %}
+                {% if custom_field.location == 'account' %}
+                  {% if custom_field.type == 'select' %}
+                    <div id="prlogin-custom-field{{ custom_field.custom_field_id }}" class="form-group custom-field" data-sort="{{ custom_field.sort_order }}">
+                      <label class="col-sm-4 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}:</label>
+                      <div class="col-sm-8">
+                        <select name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}]" id="prlogin-input-custom-field{{ custom_field.custom_field_id }}" class="form-control">
+                          <option value="">{{ text_select }}</option>
+                          {% for custom_field_value in custom_field['custom_field_value'] %}
+                            {% if register_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == register_custom_field[custom_field.custom_field_id] %}
+                              <option value="{{ custom_field_value.custom_field_value_id }}" selected="selected">{{ custom_field_value.name }}</option>
+                            {% else %}
+                              <option value="{{ custom_field_value.custom_field_value_id }}">{{ custom_field_value.name }}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+                        {% if error_custom_field[custom_field.custom_field_id] %}
+                          <div class="text-danger">{{ error_custom_field[custom_field.custom_field_id] }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if custom_field.type == 'radio' %}
+                    <div id="prlogin-custom-field{{ custom_field.custom_field_id }}" class="form-group custom-field" data-sort="{{ custom_field.sort_order }}">
+                      <label class="col-sm-4 control-label">{{ custom_field.name }}</label>
+                      <div class="col-sm-8">
+                        <div>
+                          {% for custom_field_value in custom_field.custom_field_value %}
+                          <div class="radio">
+                          {% if register_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id == register_custom_field[custom_field.custom_field_id] %}
+                            <label>
+                              <input type="radio" name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}]" value="{{ custom_field_value.custom_field_value_id }}" checked="checked"/>
+                              {{ custom_field_value.name }}</label>
+                          {% else %}
+                            <label>
+                              <input type="radio" name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}]" value="{{ custom_field_value.custom_field_value_id }}"/>
+                              {{ custom_field_value.name }}</label>
+                          {% endif %}
+                          </div>
+                          {% endfor %}
+                        </div>
+                        {% if error_custom_field[custom_field.custom_field_id] %}
+                          <div class="text-danger">{{ error_custom_field[custom_field.custom_field_id] }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if custom_field.type == 'checkbox' %}
+                    <div id="prlogin-custom-field{{ custom_field.custom_field_id }}" class="form-group custom-field" data-sort="{{ custom_field.sort_order }}">
+                      <label class="col-sm-4 control-label">{{ custom_field.name }}</label>
+                      <div class="col-sm-8">
+                        <div>
+                        {% for custom_field_value in custom_field.custom_field_value %}
+                          <div class="checkbox">
+                          {% if register_custom_field[custom_field.custom_field_id] and custom_field_value.custom_field_value_id in register_custom_field[custom_field.custom_field_id] %}
+                            <label>
+                              <input type="checkbox" name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}" checked="checked"/>
+                              {{ custom_field_value.name }}</label>
+                          {% else %}
+                            <label>
+                              <input type="checkbox" name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}][]" value="{{ custom_field_value.custom_field_value_id }}"/>
+                              {{ custom_field_value.name }}</label>
+                          {% endif %}
+                          </div>
+                        {% endfor %}
+                        </div>
+                        {% if error_custom_field[custom_field.custom_field_id] %}
+                          <div class="text-danger">{{ error_custom_field[custom_field.custom_field_id] }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if custom_field.type == 'text' %}
+                    <div id="prlogin-custom-field{{ custom_field.custom_field_id }}" class="form-group custom-field" data-sort="{{ custom_field.sort_order }}">
+                      <label class="col-sm-4 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
+                      <div class="col-sm-8">
+                        <input type="text" name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}]"
+                               value="{% if register_custom_field[custom_field.custom_field_id] %}{{ register_custom_field[custom_field.custom_field_id] }}{% else %}{{ custom_field.value }}{% endif %}"
+                               placeholder="{{ custom_field.name }}" id="prlogin-input-custom-field{{ custom_field.custom_field_id }}" class="form-control"/>
+                        {% if error_custom_field[custom_field.custom_field_id] %}
+                          <div class="text-danger">{{ error_custom_field[custom_field.custom_field_id] }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if custom_field.type == 'textarea' %}
+                    <div id="prlogin-custom-field{{ custom_field.custom_field_id }}" class="form-group custom-field" data-sort="{{ custom_field.sort_order }}">
+                      <label class="col-sm-4 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
+                      <div class="col-sm-8">
+                        <textarea name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}]"
+                            rows="5" placeholder="{{ custom_field.name }}" id="prlogin-input-custom-field{{ custom_field.custom_field_id }}"
+                            class="form-control">{% if register_custom_field[custom_field.custom_field_id] %}{{ register_custom_field[custom_field.custom_field_id] }}{% else %}{{ custom_field.value }}{% endif %}</textarea>
+                        {% if error_custom_field[custom_field.custom_field_id] %}
+                          <div class="text-danger">{{ error_custom_field[custom_field.custom_field_id] }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if custom_field.type == 'file' %}
+                    <div id="prlogin-custom-field{{ custom_field.custom_field_id }}" class="form-group custom-field" data-sort="{{ custom_field.sort_order }}">
+                      <label class="col-sm-4 control-label">{{ custom_field.name }}</label>
+                      <div class="col-sm-8">
+                        <button type="button" id="button-custom-field{{ custom_field.custom_field_id }}" data-loading-text="{{ text_loading }}" class="btn btn-default">
+                          <i class="fa fa-upload"></i> {{ button_upload }}</button>
+                        <input type="hidden" name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}]"
+                               value="{% if register_custom_field[custom_field.custom_field_id] %}  {{ register_custom_field[custom_field.custom_field_id] }} {% endif %}"/>
+                        {% if error_custom_field[custom_field.custom_field_id] %}
+                          <div class="text-danger">{{ error_custom_field[custom_field.custom_field_id] }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if custom_field.type == 'date' %}
+                    <div id="prlogin-custom-field{{ custom_field.custom_field_id }}" class="form-group custom-field" data-sort="{{ custom_field.sort_order }}">
+                      <label class="col-sm-4 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
+
+                      <div class="col-sm-8">
+                        <div class="input-group date">
+                          <input type="text" name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}]"
+                                 value="{% if register_custom_field[custom_field.custom_field_id] %}{{ register_custom_field[custom_field.custom_field_id] }}{% else %}{{ custom_field.value }}{% endif %}"
+                                 placeholder="{{ custom_field.name }}" data-date-format="YYYY-MM-DD" id="prlogin-input-custom-field{{ custom_field.custom_field_id }}" class="form-control"/>
+                          <span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
+                        </div>
+                        {% if error_custom_field[custom_field.custom_field_id] %}
+                          <div class="text-danger">{{ error_custom_field[custom_field.custom_field_id] }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+-                {% if custom_field.type == 'time' %}
+                  <div id="custom-field{{ custom_field.custom_field_id }}" class="form-group custom-field" data-sort="{{ custom_field.sort_order }}">
+                    <label class="col-sm-4 control-label" for="input-custom-field{{ custom_field.custom_field_id }}">{{ custom_field.name }}</label>
+                    <div class="col-sm-8">
+                      <div class="input-group datetime">
+                        <input type="text" name="custom_field[{{ custom_field.location }}][{{ custom_field.custom_field_id }}]" class="form-control"
+                               value="{% if register_custom_field[custom_field.custom_field_id] %}{{ register_custom_field[custom_field.custom_field_id] }}{% else %}{{ custom_field.value }}{% endif %}"
+                               placeholder="{{ custom_field.name }}" data-date-format="YYYY-MM-DD HH:mm" id="prlogin-input-custom-field{{ custom_field.custom_field_id }}"/>
+                        <span class="input-group-btn"><button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button></span>
+                      </div>
+                      {% if error_custom_field[custom_field.custom_field_id] %}
+                        <div class="text-danger">{{ error_custom_field[custom_field.custom_field_id] }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+                {% endif %}
+              {% endfor %}
+              
+              <div class="form-group required">
+                <label class="control-label col-sm-4">{{ entry_password }}</label>
+                <div class="col-sm-8">
+                  <input type="password" name="password" id="prlogin-input-password" placeholder="{{ entry_password }}" class="form-control"/>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="control-label col-sm-4">{{ entry_confirm }}</label>
+                <div class="col-sm-8">
+                  <input type="password" name="confirm" id="prlogin-input-confirm" placeholder="{{ entry_confirm }}" class="form-control"/>
+                </div>
+              </div>
+              
+              <div class="form-group required">
+                <label class="control-label col-sm-4">{{ entry_captcha }}</label>
+                <div class="col-sm-8">
+                  <input type="text" name="captcha" id="prlogin-input-captcha" placeholder="{{ entry_captcha }}" class="form-control"/>
+                  <img src="index.php?route=extension/captcha/basic/captcha" alt=""/>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="control-label col-sm-6">
+                  {{ entry_newsletter }}
+                </label>
+                <div class="col-sm-6">
+                  <div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="newsletter" value="1" checked="checked"/>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {% if text_agree %}
+              <div class="form-group">
+                <label class="control-label col-sm-6">
+                  {{ text_agree }}
+                </label>
+                <div class="col-sm-6">
+                  <div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="agree" value="1" checked="checked"/>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              
+              <button type="submit" class="btn btn-primary">{{ button_submit }}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

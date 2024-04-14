@@ -1,0 +1,79 @@
+<div class="xreview-module">
+<h3>{{ heading_title }}</h3>
+<div style="margin-bottom: 15px"></div>
+{% if xreviewss %}     
+  {% for xreviews in xreviewss %}
+    <div class="xreview-item">
+      <div class="row">
+      {% if photo %}
+        <div class="xreview-image text-center col-md-2 col-sm-3 col-xs-12"><img src="{{ xreviews.photo }}" alt=""/></div>
+      {% endif %}
+      
+      <div class="xreview-content{% if photo %} col-md-10 col-sm-9 {% endif %} col-xs-12">
+        {% if xreviews.name or xreviews.city or date_added or rating %}
+          <div class="xreviews-meta">
+
+            {% if xreviews.name %}
+                <span class="xreview-author">{{ xreviews.name }}</span>
+            {% endif %}
+            
+            {% if xreviews.city or date_added %}
+            &nbsp;&nbsp;
+            {% if xreviews.city %}
+              <span class="xreview-city">{{ xreviews.city }}{% if date_added and xreviews.date_added %}, {% endif %}</span>
+            {% endif %}
+            
+            {% if date_added and xreviews.date_added %}
+              <span class="xreview-date">{{ xreviews.date_added }}</span>
+            {% endif %}
+            
+            {% endif %}
+
+            {% if rating %}
+              <span class="xreview-rating rating">
+              {% for i in 1..5 %}
+                {% if xreviews.rating < i %}
+                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                {% else %}
+                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                {% endif %}
+              {% endfor %}
+              </span>
+            {% endif %}
+
+          </div>
+        {% endif %}
+
+        {% if xreviews.title %}
+            <div class="xreview-title">{{ xreviews.title }}</div>
+        {% endif %}
+
+        {% if xreviews.text %}
+            <p class="xreview-text">{{ xreviews.text }}</p>
+        {% endif %}
+
+        {% if xreviews.good %}
+            <div class="xreview-good alert alert-success"><strong><i style="color:green" class="fa fa-plus"></i>&nbsp;</strong>{{ xreviews.good }}</div>
+        {% endif %}
+
+        {% if xreviews.bad %}
+            <div class="xreview-bad alert alert-danger"><strong><i style="color:red" class="fa fa-minus"></i>&nbsp;</strong>{{ xreviews.bad }}</div>
+        {% endif %}
+
+        {% if xreviews.comment %}
+            <div class="xreviews-comment"><strong>{{ entry_comment }}</strong><br/>{{ xreviews.comment }}</div>
+        {% endif %}
+        </div>
+      </div>
+    </div>  
+  {% endfor %}
+{% endif %}
+<div class="row">
+  <div class="col-xs-12">
+    <div class="button-group text-center">
+      <a class="btn btn-lg btn-primary" href="{{ show_all_url }}">{{ show_all }}</a>
+    </div>
+  </div>
+</div>
+<div style="margin-bottom: 30px"></div>
+</div>

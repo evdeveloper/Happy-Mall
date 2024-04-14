@@ -1,0 +1,286 @@
+{{ header }}{{ column_left }}
+<div id="content">
+	<div class="page-header">
+	<div class="container-fluid">
+		<div class="pull-right">
+			<button type="submit" form="form-xreviews" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+		</div>
+		<h1>{{ heading_title }}</h1>
+		<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+		<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+	</div>
+	<div class="container-fluid xreviews-module">
+	{% if error_warning %}
+	<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+	</div>
+	{% endif %}
+	{% if success %}
+		<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
+	{% endif %}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		<h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_add }}</h3>
+		</div>
+		<div class="panel-body">
+		<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-xreviews" class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ help_xreviews_guest }}">{{ entry_xreviews_guest }}</span></label>
+					<div class="col-sm-10">
+						<div class="btn-group" data-toggle="buttons">
+							{% if xreviews_guest %}
+								<label class="btn btn-default active">
+									<input type="radio" name="xreviews_guest" value="1" autocomplete="off" checked="checked" />{{ text_enabled }}
+								</label>
+								<label class="btn btn-danger btn-default">
+									<input type="radio" name="xreviews_guest" value="0" autocomplete="off"/>{{ text_disabled }}
+								</label>
+							{% else %}
+								<label class="btn btn-default">
+									<input type="radio" name="xreviews_guest" value="1" autocomplete="off" />{{ text_enabled }}
+								</label>
+								<label class="btn btn-danger btn-default active">
+									<input type="radio" name="xreviews_guest" value="0" autocomplete="off" checked="checked" />{{ text_disabled }}
+								</label>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ help_xreviews_mail }}">{{ entry_xreviews_mail }}</span></label>
+					<div class="col-sm-10">
+						<div class="btn-group" data-toggle="buttons">
+							{% if xreviews_mail %}
+								<label class="btn btn-default active">
+									<input type="radio" name="xreviews_mail" value="1" autocomplete="off" checked="checked" />{{ text_enabled }}
+								</label>
+								<label class="btn btn-danger btn-default">
+									<input type="radio" name="xreviews_mail" value="0" autocomplete="off"/>{{ text_disabled }}
+								</label>
+							{% else %}
+								<label class="btn btn-default">
+									<input type="radio" name="xreviews_mail" value="1" autocomplete="off" />{{ text_enabled }}
+								</label>
+								<label class="btn btn-danger btn-default active">
+									<input type="radio" name="xreviews_mail" value="0" autocomplete="off" checked="checked" />{{ text_disabled }}
+								</label>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ entry_xreviews_status }}</label>
+					<div class="col-sm-10">
+						<div class="btn-group" data-toggle="buttons">
+							{% if xreviews_status %}
+								<label class="btn btn-default active">
+									<input type="radio" name="xreviews_status" value="1" autocomplete="off" checked="checked" />{{ text_enabled }}
+								</label>
+								<label class="btn btn-danger btn-default">
+									<input type="radio" name="xreviews_status" value="0" autocomplete="off"/>{{ text_disabled }}
+								</label>
+							{% else %}
+								<label class="btn btn-default">
+									<input type="radio" name="xreviews_status" value="1" autocomplete="off" />{{ text_enabled }}
+								</label>
+								<label class="btn btn-danger btn-default active">
+									<input type="radio" name="xreviews_status" value="0" autocomplete="off" checked="checked" />{{ text_disabled }}
+								</label>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-title">{{ entry_xreviews_title }}</label>
+							<div class="col-sm-8">
+								<select name="xreviews_title" id="input-xreviews-title" class="form-control">
+									<option value="2"{% if xreviews_title == '2' %} selected="selected" {% endif %}>{{ text_required }}</option>
+									<option value="1"{% if xreviews_title == '1' %} selected="selected" {% endif %}>{{ text_no_required }}</option>
+									<option value="0"{% if not xreviews_title %} selected="selected" {% endif %}>{{ text_disabled }}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-city">{{ entry_xreviews_city }}</label>
+							<div class="col-sm-8">
+								<select name="xreviews_city" id="input-xreviews-city" class="form-control">
+									<option value="2"{% if xreviews_city == '2' %} selected="selected" {% endif %}>{{ text_required }}</option>
+									<option value="1"{% if xreviews_city == '1' %} selected="selected" {% endif %}>{{ text_no_required }}</option>
+									<option value="0"{% if not xreviews_city %} selected="selected" {% endif %}>{{ text_disabled }}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-name">{{ entry_xreviews_name }}</label>
+							<div class="col-sm-8">
+								<select name="xreviews_name" id="input-xreviews-name" class="form-control">
+									<option value="2"{% if xreviews_name == '2' %} selected="selected" {% endif %}>{{ text_required }}</option>
+									<option value="1"{% if xreviews_name == '1' %} selected="selected" {% endif %}>{{ text_no_required }}</option>
+									<option value="0"{% if not xreviews_name %} selected="selected" {% endif %}>{{ text_disabled }}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-email">{{ entry_xreviews_email }}</label>
+							<div class="col-sm-8">
+								<select name="xreviews_email" id="input-xreviews-email" class="form-control">
+									<option value="2"{% if xreviews_email == '2' %} selected="selected" {% endif %}>{{ text_required }}</option>
+									<option value="1"{% if xreviews_email == '1' %} selected="selected" {% endif %}>{{ text_no_required }}</option>
+									<option value="0"{% if not xreviews_email %} selected="selected" {% endif %}>{{ text_disabled }}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-text">{{ entry_xreviews_text }}</label>
+							<div class="col-sm-8">
+								<select name="xreviews_text" id="input-xreviews-text" class="form-control">
+									<option value="2" {% if xreviews_text == '2' %} selected="selected" {% endif %}>{{ text_required }}</option>
+									<option value="1" {% if xreviews_text == '1' %} selected="selected" {% endif %}>{{ text_no_required }}</option>
+									<option value="0" {% if not xreviews_text %} selected="selected" {% endif %}>{{ text_disabled }}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-good">{{ entry_xreviews_good }}</label>
+							<div class="col-sm-8">
+								<select name="xreviews_good" id="input-xreviews-good" class="form-control">
+									<option value="2" {% if xreviews_good == '2' %} selected="selected" {% endif %}>{{ text_required }}</option>
+									<option value="1" {% if xreviews_good == '1' %} selected="selected" {% endif %}>{{ text_no_required }}</option>
+									<option value="0" {% if not xreviews_good %} selected="selected" {% endif %}>{{ text_disabled }}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-limit">{{ entry_xreviews_limit }}</label>
+							<div class="col-sm-8">
+								<input type="text" name="xreviews_limit" value="{{ xreviews_limit }}" placeholder="{{ entry_xreviews_limit }}" id="input-xreviews-limit" class="form-control" />
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-bad">{{ entry_xreviews_bad }}</label>
+							<div class="col-sm-8">
+								<select name="xreviews_bad" id="input-xreviews-bad" class="form-control">
+									<option value="2" {% if xreviews_bad == '2' %} selected="selected" {% endif %}>{{ text_required }}</option>
+									<option value="1" {% if xreviews_bad == '1' %} selected="selected" {% endif %}>{{ text_no_required }}</option>
+									<option value="0" {% if not xreviews_bad %} selected="selected" {% endif %}>{{ text_disabled }}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-photo">{{ entry_xreviews_photo }}</label>
+							<div class="col-sm-8">
+								<select name="xreviews_photo" id="input-xreviews-photo" class="form-control">
+									<option value="2" {% if xreviews_photo == '2' %} selected="selected" {% endif %}>{{ text_required }}</option>
+									<option value="1" {% if xreviews_photo == '1' %} selected="selected" {% endif %}>{{ text_no_required }}</option>
+									<option value="0" {% if not xreviews_photo %} selected="selected" {% endif %}>{{ text_disabled }}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+						<label class="col-sm-4 control-label" for="input-xreviews-photo-width">{{ entry_xreviews_photo_size }}</label>
+						<div class="col-sm-8">
+							<div class="row">
+							<div class="col-sm-6">
+								<input type="text" name="xreviews_photo_width" value="{{ xreviews_photo_width }}" placeholder="{{ entry_xreviews_width }}" id="input-xreviews-photo-width" class="form-control" />
+							</div>
+							<div class="col-sm-6">
+								<input type="text" name="xreviews_photo_height" value="{{ xreviews_photo_height }}" placeholder="{{ entry_xreviews_height }}" class="form-control" />
+							</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-date-added">{{ entry_xreviews_date_added }}</label>
+							<div class="col-sm-8">
+								<div class="btn-group" data-toggle="buttons">
+									{% if xreviews_date_added %}
+										<label class="btn btn-default active">
+											<input type="radio" name="xreviews_date_added" value="1" autocomplete="off" checked="checked" />{{ text_enabled }}
+										</label>
+										<label class="btn btn-danger btn-default">
+											<input type="radio" name="xreviews_date_added" value="0" autocomplete="off"/>{{ text_disabled }}
+										</label>
+									{% else %}
+										<label class="btn btn-default">
+											<input type="radio" name="xreviews_date_added" value="1" autocomplete="off" />{{ text_enabled }}
+										</label>
+										<label class="btn btn-danger btn-default active">
+											<input type="radio" name="xreviews_date_added" value="0" autocomplete="off" checked="checked" />{{ text_disabled }}
+										</label>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="input-xreviews-rating">{{ entry_xreviews_rating }}</label>
+							<div class="col-sm-8">
+								<div class="btn-group" data-toggle="buttons">
+									{% if xreviews_rating %}
+										<label class="btn btn-default active">
+											<input type="radio" name="xreviews_rating" value="1" autocomplete="off" checked="checked" />{{ text_enabled }}
+										</label>
+										<label class="btn btn-danger btn-default">
+											<input type="radio" name="xreviews_rating" value="0" autocomplete="off"/>{{ text_disabled }}
+										</label>
+									{% else %}
+										<label class="btn btn-default">
+											<input type="radio" name="xreviews_rating" value="1" autocomplete="off" />{{ text_enabled }}
+										</label>
+										<label class="btn btn-danger btn-default active">
+											<input type="radio" name="xreviews_rating" value="0" autocomplete="off" checked="checked" />{{ text_disabled }}
+										</label>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		</div>
+		<div style="background: #233746;color: #ffffff;font-size: 130%;padding: 10px;border-color: #233746;border-radius: 3px;margin-top: 20px;">Еще больше модулей для Opencart 3.x на нашем сайте <a style="color: #fffc00;" href="https://opencart3x.ru/">opencart3x.ru </a>!</div>
+	</div>
+	</div>
+</div>
+{{ footer }}
