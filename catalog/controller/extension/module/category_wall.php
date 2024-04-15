@@ -30,8 +30,6 @@ class ControllerExtensionModuleCategoryWall extends Controller {
 
         $data['categories'] = array();
 
-        $data['categories'] = array();
-
         $categories = $this->model_catalog_category->getCategories(0);
 
         $this->load->model('tool/image');
@@ -52,6 +50,7 @@ class ControllerExtensionModuleCategoryWall extends Controller {
                 'image' => $image,
                 'href' => $this->url->link('product/category', 'path=' . $category['category_id'])
             );
+
         }
 
         return $this->load->view('extension/module/category_wall', $data);

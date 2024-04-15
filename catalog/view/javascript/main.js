@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let headerHeight = HEADER.offsetHeight;
 
+  $('.actions__counter').each(function(i, count){
+    if(+$(count).text() > 0) { $(count).show(); }
+  });
+
   document.addEventListener('click', e => {
     if(e.target.closest('.card__favorite')) {
       let parent = e.target.closest('.card__favorite');

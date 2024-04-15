@@ -1,0 +1,15 @@
+<section class="s-category section__default">
+  <div class="container">
+    <h2 class="section__title">{{ heading_title }}</h2>
+    <div class="category">
+      {% for category in categories %} 
+        <a class="category__item" href="{{ category.href }}">
+          <h4 class="category__title">{{ category.name }}</h4>
+          <div class="category__picture"> 
+            <img src="{{ category.image }}" alt="{{ category.name }}"></div>
+          <div class="category__count">20</div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
