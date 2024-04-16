@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title'] 	    	= 'Отзывы о магазине';
+$_['heading_title'] 	    	= 'Отзывы';
 
 // Text
 $_['text_no_xreviewss']      	= 'Отзывов нет';

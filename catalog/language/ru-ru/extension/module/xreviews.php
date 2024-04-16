@@ -1,6 +1,6 @@
 <?php
 // Heading 
-$_['heading_title']  			= 'Отзывы о магазине';
+$_['heading_title']  			= 'Отзывы';
 
 //Button
 $_['show_all']					= 'Смотреть все отзывы';
