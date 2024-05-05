@@ -194,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+  
   const swiperCardGallery = new Swiper('.swiper-card-gallery', {
     keyboard: true,
     grabCursor: true,
