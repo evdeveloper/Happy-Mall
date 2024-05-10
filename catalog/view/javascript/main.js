@@ -9,10 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let headerHeight = HEADER.offsetHeight;
 
-  $('.actions__counter').each(function(i, count){
-    if(+$(count).text() > 0) { $(count).show(); }
-  });
-
   document.addEventListener('click', e => {
     if(e.target.closest('.card__favorite')) {
       let parent = e.target.closest('.card__favorite');
@@ -38,6 +34,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  $(document).on('click', function(e){
+		if(e.target.closest('.counter')) {
+      let parent = e.target.closest('.counter');
+      let value = $(parent).find('.counter__value');
+      if(e.target.closest('.counter__plus')) {
+        let count = parseInt($(value).val()) + 1;
+        value.val(count);
+      }
+      if(e.target.closest('.counter__minus')) {
+        let count = parseInt($(value).val()) - 1;
+        count = count < 1 ? 1 : count;
+        value.val(count);
+      }
+		}
+	});
+
+  $(document).on('click', '.tabs__tab', function(){
+    $(this).addClass('active').siblings().removeClass('active');
+    $(this).closest('.tabs__wrapper').find('.tabs__item').hide().eq($(this).index()).fadeIn();
+  });
+
+  $('.actions__counter').each(function(i, count){
+    if(+$(count).text() > 0) { $(count).show(); }
+  });
+  
   $('.catalogMenu__tab:first-child').addClass('active');
   $('.catalogMenu__col:first-child').show();
   $(document).on('click', '.catalogMenu__tab', function() {
@@ -125,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
     removeHiddenBody();
   }
 
-
   const swiperBanner = new Swiper('.banner__swiper', {
     autoHeight: true,
     keyboard: true,
@@ -194,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-  
   const swiperCardGallery = new Swiper('.swiper-card-gallery', {
     keyboard: true,
     grabCursor: true,
@@ -202,6 +221,32 @@ document.addEventListener("DOMContentLoaded", () => {
       el: '.swiper-pagination',
       clickable: true
     }
+  });
+
+  const sliderThumbnails = new Swiper('.card-product__thumbs', {
+    direction: 'vertical',
+    mousewheel: true,
+    breakpoints: {
+      320: {
+        direction: 'horizontal',
+        spaceBetween: 5,
+        slidesPerView: 4
+      },
+      600: {
+        spaceBetween: 8
+      },
+      769: {
+        spaceBetween: 8,
+        slidesPerView: 'auto'
+      }
+    }
+  });
+  
+  const swiperProduct = new Swiper('.card-product__picture', {
+    slidesPerView: 1,
+    thumbs: {
+      swiper: sliderThumbnails
+    },
   });
   
 });

@@ -1,25 +1,292 @@
 {{ header }}
-<div id="product-product" class="container">
-  <ul class="breadcrumb">
-    {% for breadcrumb in breadcrumbs %}
-    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
-    {% endfor %}
-  </ul>
-  <div class="row">{{ column_left }}
-    {% if column_left and column_right %}
-    {% set class = 'col-sm-6' %}
-    {% elseif column_left or column_right %}
-    {% set class = 'col-sm-9' %}
-    {% else %}
-    {% set class = 'col-sm-12' %}
-    {% endif %}
-    <div id="content" class="{{ class }}">{{ content_top }}
-      <div class="row"> {% if column_left or column_right %}
+<main id="product-product" class="content overflow-unset">
+  <div class="breadcrumbs">
+    <div class="container">
+      <ul class="breadcrumbs__list">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+          </li>
+          {% if not loop.last %}
+            <svg class="svg-sprite-icon icon-breadcrumbs-arrow breadcrumbs__icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#breadcrumbs-arrow"></use>
+            </svg>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <section class="s-card-product">
+    <div class="container">
+      <div class="card-product__wrapper">
+        {% if thumb or images %}
+          <div class="card-product__gallery">
+            {% if images %}
+              <div class="swiper card-product__thumbs">
+                <div class="swiper-wrapper">
+                  {% if thumb %}
+                    <div class="swiper-slide">
+                      <img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}">
+                    </div>
+                  {% endif %}
+                  {% for image in images %}
+                    {% if image.thumb is not null and image.thumb is not empty %}
+                      <div class="swiper-slide">
+                        <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}">
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+            <div class="swiper card-product__picture">
+              <div class="swiper-wrapper">
+                {% if thumb %}
+                  <div class="swiper-slide">
+                    <img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}">
+                    <div class="card__favorite" onclick="wishlist.add('{{ product_id }}');" data-toggle="tooltip" data-original-title="В закладки">
+                      <svg class="svg-sprite-icon icon-like-outline card__favorite-icon">
+                        <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#like-outline"></use>
+                      </svg>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if images %}
+                  {% for image in images %}
+                    <div class="swiper-slide">
+                      <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}">
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        <div class="card-product__info">
+          <div class="card-product__sticky">
+            <div class="card-product__reviews">
+              {% if review_status %}
+                <div class="rating">
+                  {% for i in 1..5 %}
+                    {% if rating < i %}
+                      <div class="rating__item">
+                        <svg class="svg-sprite-icon icon-star-fill rating__icon">
+                          <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#star-outline"></use>
+                        </svg>
+                      </div>
+                    {% else %}
+                      <div class="rating__item">
+                        <svg class="svg-sprite-icon  icon-star-outline rating__icon">
+                          <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#star-fill"></use>
+                        </svg>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <div class="reviews__counter">{{ reviews }}</div>
+              {% endif %}
+            </div>
+            <h1 class="card-product__title">{{ heading_title }}</h1>
+            <div class="card-product__available available">{{ text_instock }}</div>
+            <div class="card-product__code">{{ text_sku }} {{ sku }}</div>
+            {% if price %}
+              <div class="card-product__price">
+                <span>Оптовая цена:</span>
+                <div class="card-product__price-inner">
+                  {% if not special %}
+                    <div class="card-product__price-new">{{ price }}</div>
+                  {% else %}
+                    <div class="card-product__price-new">{{ special }}</div>
+                    <div class="card-product__price-old">{{ price }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+            <div class="card-product__inner" id="product">
+              <div class="card-product__options">
+                <div class="options options--size">
+                  <div class="options__title">Выбрать опции</div>
+                  <div class="options__list">
+                    <div class="options__item">
+                      <input type="radio" name="type" id="type1">
+                      <label for="type1">С микрофоном<span>от 5 990 ₽</span></label>
+                    </div>
+                    <div class="options__item">
+                      <input type="radio" name="type" id="type2">
+                      <label for="type2">Беспроводные<span>от 7 990 ₽</span></label>
+                    </div>
+                    <div class="options__item">
+                      <input type="radio" name="type" id="type3">
+                      <label for="type3">Ударопрочные<span>от 10 990 ₽</span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="options options--color">
+                  <div class="options__title">Выбрать цвет</div>
+                  <div class="options__list">
+                    <div class="options__item">
+                      <input type="radio" name="color" id="black">
+                      <label for="black"><img src="static/images/img/options/color/black.png" alt=""></label>
+                    </div>
+                    <div class="options__item">
+                      <input type="radio" name="color" id="red">
+                      <label for="red"><img src="static/images/img/options/color/red.png" alt=""></label>
+                    </div>
+                    <div class="options__item">
+                      <input type="radio" name="color" id="purple">
+                      <label for="purple"><img src="static/images/img/options/color/purple.png" alt=""></label>
+                    </div>
+                    <div class="options__item">
+                      <input type="radio" name="color" id="pink">
+                      <label for="pink"><img src="static/images/img/options/color/pink.png" alt=""></label>
+                    </div>
+                    <div class="options__item">
+                      <input type="radio" name="color" id="gray">
+                      <label for="gray"><img src="static/images/img/options/color/gray.png" alt=""></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="options options--size">
+                  <div class="options__title">Выбрать размер</div>
+                  <div class="options__list">
+                    <div class="options__item">
+                      <input type="radio" name="size" id="size1">
+                      <label for="size1">Большие<span>25x25x20 mm</span></label>
+                    </div>
+                    <div class="options__item">
+                      <input type="radio" name="size" id="size2">
+                      <label for="size2">Средние<span>25x25x20 mm</span></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-product__add">
+                <div class="counter">
+                  <div class="counter__item counter__minus">
+                    <svg class="svg-sprite-icon  icon-minus counter__icon">
+                      <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#minus"></use>
+                    </svg>
+                  </div>
+                  <input type="text" class="counter__value" disabled name="quantity" value="{{ minimum }}" size="2" id="input-quantity">
+                  <input type="hidden" name="product_id" value="{{ product_id }}">
+                  <div class="counter__item counter__plus">
+                    <svg class="svg-sprite-icon  icon-plus counter__icon">
+                      <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#plus"></use>
+                    </svg>
+                  </div>
+                </div>
+                <button class="button button--outline w-full" type="button" id="button-cart" data-loading-text="{{ text_loading }}">{{ button_cart }}</button>
+                {% if minimum > 1 %}
+                  <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_minimum }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-product__tabs">
+          <div class="tabs__wrapper">
+            <div class="tabs">
+              <div class="tabs__tab active">Характеристики</div>
+              <div class="tabs__tab">Описание</div>
+              <div class="tabs__tab">Информация о доставке</div>
+            </div>
+            <div class="tabs__content">
+              <div class="tabs__item">
+                <div class="characters">
+                  <div class="characters__title">Характеристики</div>
+                  <ul class="characters__list">
+                    <li class="characters__item">
+                      <div class="characters__col">Тип</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">Игровые наушники</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Габариты</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">25x25x20 мм</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Вес</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">500 грам</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Подключение</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">Проводное</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Наличие микрофона</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">Да</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Макс. частота, Гц</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">Да</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="characters">
+                  <div class="characters__title">Размеры коробки:</div>
+                  <ul class="characters__list">
+                    <li class="characters__item">
+                      <div class="characters__col">Тип</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">Игровые наушники</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Габариты</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">25x25x20 мм</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Вес</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">500 грам</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Подключение</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">Проводное</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Наличие микрофона</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">Да</div>
+                    </li>
+                    <li class="characters__item">
+                      <div class="characters__col">Макс. частота, Гц</div>
+                      <div class="characters__line"></div>
+                      <div class="characters__col">Да</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tabs__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi incidunt
+                minima eum a reiciendis illum, voluptatem reprehenderit ipsa recusandae quo adipisci quos cupiditate
+                exercitationem? Necessitatibus repudiandae cumque libero provident neque.Enim laudantium ad aut
+                facere blanditiis officia quibusdam eligendi dolores, autem optio. Iure officiis quia asperiores
+                nulla ipsam obcaecati rerum, possimus ad.</div>
+              <div class="tabs__item">3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {# <div class="row">
+    {{ column_left }}
+    <div id="content" class="{{ class }}">
+    {{ content_top }}
+      <div class="row"> 
+        {% if column_left or column_right %}
         {% set class = 'col-sm-6' %}
         {% else %}
         {% set class = 'col-sm-6' %}
         {% endif %}
-        <div class="{{ class }}"> {% if thumb or images %}
+        <div class="{{ class }}"> 
+          {% if thumb or images %}
           <ul class="thumbnails">
             {% if thumb %}
             <li><a class="thumbnail" href="{{ popup }}" title="{{ heading_title }}"><img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></a></li>
@@ -204,15 +471,23 @@
             </div>
             {% if minimum > 1 %}
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_minimum }}</div>
-            {% endif %}</div>
+            {% endif %}
+            </div>
           {% if review_status %}
-          <div class="rating">
-            <p>{% for i in 1..5 %}
-              {% if rating < i %}<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>{% else %}<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>{% endif %}
-              {% endfor %} <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ reviews }}</a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ text_write }}</a></p>
-            <hr>
-          </div>
-          {% endif %} </div>
+            <div class="rating">
+              <p>
+              {% for i in 1..5 %}
+                {% if rating < i %}
+                  <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                {% else %}
+                  <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                {% endif %}
+              {% endfor %} 
+                <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ reviews }}</a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ text_write }}</a></p>
+              <hr>
+            </div>
+          {% endif %} 
+        </div>
       </div>
       
       <ul class="nav nav-tabs">
@@ -348,8 +623,10 @@
         {% endfor %} </p>
         {% endif %}
       {{ content_bottom }}</div>
-    {{ column_right }}</div>
-</div>
+    {{ column_right }}
+  </div> #}
+
+</main>
 <script type="text/javascript"><!--
 $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
 	$.ajax({
