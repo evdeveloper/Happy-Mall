@@ -1,53 +1,42 @@
 {{ header }}
-<div id="common-home">
-  <div class="row">
-    {{ column_left }}
-    {% if column_left and column_right %}
-    {% set class = 'col-sm-6' %}
-    {% elseif column_left or column_right %}
-    {% set class = 'col-sm-9' %}
-    {% else %}
-    {% set class = 'col-sm-12' %}
-    {% endif %}
-    {{ column_right }}
-  </div>
-  <main id="content" class="content">
-    {{ content_top }}
-    {{ content_bottom }}
-  </main>
-</div>
-<section class="s-consult section__default">
-  <div class="container">
-    <div class="consult">
-      <div class="consult__banner">
-        <div class="consult__picture"> <img src="catalog/view/theme/happy/image/consult/consult.png" alt="Оставьте заявку"></div>
-        <h2>Нужна помощь с выбором товара или расчетом доставки?</h2>
-        <p>Оставьте заявку, наш специалист перезвонит Вам в течение дня.</p>
-        <div class="consult__arrow">
-          <svg class="svg-sprite-icon  icon-arrow-tip-right consult__arrow-icon">
-            <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-tip-right"></use>
-          </svg>
+<main id="common-home" class="content {{(class == 'common-home') ? 'overflow-unset' : false}}">
+  {{ column_left }}
+  {{ column_right }}
+  {{ content_top }}
+  <section class="s-consult section__default">
+    <div class="container">
+      <div class="consult">
+        <div class="consult__banner">
+          <div class="consult__picture"> <img src="catalog/view/theme/happy/image/consult/consult.png" alt="Оставьте заявку"></div>
+          <h2>Нужна помощь с выбором товара или расчетом доставки?</h2>
+          <p>Оставьте заявку, наш специалист перезвонит Вам в течение дня.</p>
+          <div class="consult__arrow">
+            <svg class="svg-sprite-icon  icon-arrow-tip-right consult__arrow-icon">
+              <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-tip-right"></use>
+            </svg>
+          </div>
+        </div>
+        <div class="consult__form">
+          <h2>Оставить заявку</h2>
+          <form class="consult-form" action="/">
+            <input class="consult-form__input transition" type="text" name="name" placeholder="Ваше имя">
+            <input class="consult-form__input transition mask" type="text" name="phone"
+              placeholder="Номер телефона">
+            <button class="button button--white" type="submit">Отправить</button>
+            <div class="agree">
+              <input class="checkbox__input" type="checkbox" checked name="agree" id="agree">
+              <label for="agree">
+                <svg class="svg-sprite-icon  icon-check checkbox__icon">
+                  <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#check"></use>
+                </svg>Нажимая на кнопку, вы даёте согласие на обработку персональных данных и соглашаетесь c <a
+                  href="#">политикой конфиденциальности </a>
+              </label>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="consult__form">
-        <h2>Оставить заявку</h2>
-        <form class="consult-form" action="/">
-          <input class="consult-form__input transition" type="text" name="name" placeholder="Ваше имя">
-          <input class="consult-form__input transition mask" type="text" name="phone"
-            placeholder="Номер телефона">
-          <button class="button button--white" type="submit">Отправить</button>
-          <div class="agree">
-            <input class="checkbox__input" type="checkbox" checked name="agree" id="agree">
-            <label for="agree">
-              <svg class="svg-sprite-icon  icon-check checkbox__icon">
-                <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#check"></use>
-              </svg>Нажимая на кнопку, вы даёте согласие на обработку персональных данных и соглашаетесь c <a
-                href="#">политикой конфиденциальности </a>
-            </label>
-          </div>
-        </form>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
+  {{ content_bottom }}
+</main>
 {{ footer }}
