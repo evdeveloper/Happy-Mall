@@ -1,0 +1,32 @@
+.rdf-group {
+    padding: 10px 15px;
+    .radio,
+    .checkbox,
+    .image-filter {
+        display: block;
+        position: relative;
+        padding-right: 20px;
+        > label {
+            display: block;
+        }
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .rdf-clear,
+    .rdf-label {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        height: @label-height;
+        line-height: @label-height;
+        margin-top: -@label-height/2;
+    }
+    .rdf-clear {
+        z-index: 10;
+    }
+}

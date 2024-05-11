@@ -1,0 +1,263 @@
+@irs-height:            50px;
+@irs-grid-height:       70px;
+
+@irs-line-height:       24px;
+@irs-line-top:          25px;
+@irs-line-radius:       12px;
+
+@irs-handle-top:        29px;
+@irs-handle-width:      16px;
+@irs-handle-height:     16px;
+@irs-handle-radius:     50%;
+
+@irs-bar-height:        6px;
+@irs-bar-top:           34px;
+@irs-bar-radius:        3px;
+
+@irs-label-height:      15px;
+@irs-label-padding:     1px 7.5px;
+@irs-label-radius:      7.5px;
+@irs-label-fontsize:    10px;
+
+@popper_radius:         5px;
+@popper_padding:        10px;
+@popper_width:          180px;
+@popper_border_color:   @border-color;
+@popper_arrow_width:    10px;
+@popper_arrow_color:    @bg-color;
+@popper_shadow:         inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 1px rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+
+@panel-padding:         10px 15px;
+
+@chip-padding:          0 5px 0 20px;
+@chip-margin:           0 5px 5px 0;
+@chip-height:           24px;
+@chip-fontsize:         12px;
+
+@image-border-radius:   4px;
+@image-border:          1px solid transparent;
+@image-color:           transparent;
+
+@label-height:          20px;
+@label-padding:         0 5px;
+@label-margin:          0;
+@label-fontsize:        90%;
+@label-border-radius:   10px;
+
+@radio-shadow:          @irs-line-shadow;
+@radio-size:            16px;
+@radio-margin:          3px;
+@checkbox-radius:       2px;
+
+@primary_color_escaped: escape('@{primary_color}');
+@second_color_escaped: escape('@{second_color}');
+
+.slider-handle() {
+    border: 1px solid @light-color;
+    border-top-color: @bg-color;
+    background: @light-color;
+    transition: background 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    &:before,
+    &:after {
+        display: none !important;
+    }
+    &.state_hover,
+    &:hover {
+        background: lighten(@light-color, 7%);
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    }
+}
+.slider-ending() {
+    color: @irs-grid-color;
+    background: lighten(@irs-grid-color, 40%);
+}
+.slider-label() {
+    height: @irs-label-height;
+    color: @text_color;
+    background: lighten(@shadow_color, 30%);
+    box-shadow: inset 0 -1px 2px rgba(255, 255, 255, .4),
+                inset 0 1px 0 rgba(0, 0, 0, .2);
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -3px;
+        overflow: hidden;
+        border: 3px solid transparent;
+        border-top-color: lighten(@shadow_color, 30%);
+    }
+}
+.pop-arrow() {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.dream-filter {
+    > .popper {
+        background-image: linear-gradient(to top, @bg-color, lighten(@chip-color, 10%), @chip-color);
+    }
+    .rdf-filters {
+        .rdf-picked {
+            > .btn {
+                position: relative;
+                color: @text_color;
+                border: 1px solid @border-color;
+                line-height: @chip-height - 2;
+                border-radius: @chip-height/2 @chip-height/6 @chip-height/6 @chip-height/2;
+                background: @chip-color;
+                background: linear-gradient(to top, lighten(@chip-color, 10%), @chip-color);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8),
+                            inset 0 -1px 1px rgba(0, 0, 0, .1);
+                outline: none;
+                &:before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    top: @chip-height/2 - 4;
+                    left: @chip-height/2 - 4;
+                    border: 1px solid @border-color;
+                    border-radius: 50%;
+                    background: @bg-color;
+                    box-shadow: 0 1px 0 rgba(255, 255, 255, .8),
+                        0 -1px 1px rgba(0, 0, 0, .1);
+                }
+            }
+        }
+        .irs-line {
+            background: darken(@light-color, 5%);
+            border: 1px solid @border-color;
+            overflow: visible;
+            left: -@irs-line-radius/2;
+            right: -@irs-line-radius/2;
+            width: calc(~"100% + " @irs-line-radius);
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: (@irs-line-height - @irs-bar-height)/2 - 1;
+                height: @irs-bar-height;
+                left: (@irs-handle-width + @irs-bar-height)/2;
+                right: (@irs-handle-width + @irs-bar-height)/2;
+                border-radius: @irs-bar-radius;
+                width: auto;
+                background: @shadow_color;
+            }
+        }
+        .form-control {
+            box-shadow: inset 0 2px 2px rgba(0, 0, 0, .1),
+            inset 0 -1px 0 rgba(255, 255, 255, .4);
+            &:placeholder-shown {
+                background-color: @light-color;
+            }
+            &:focus {
+                background-color: @bg-color;
+                border-color: @primary_color;
+                box-shadow: inset 0 2px 2px fade(@primary_color, 12%);
+            }
+        }
+        .rdf-group {
+            .radio,
+            .checkbox {
+                > label {
+                    position: relative;
+                    min-height: @radio-size + @radio-margin*2;
+                    padding-left: @radio-size + @radio-margin*3;
+                    > span {
+                        &:before,
+                        &:after {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            z-index: 0;
+                            margin: @radio-margin;
+                        }
+                        &:before {
+                            left: 0;
+                            top: -1px;
+                            width: @radio-size;
+                            height: @radio-size;
+                            background: darken(@light-color, 5%);
+                            border: 1px solid @border-color;
+                            box-shadow: @radio-shadow;
+                        }
+                    }
+                    input {
+                        &:not(:checked),
+                        &:checked {
+                            display: none;
+                            position: absolute;
+                            opacity: 0;
+                            pointer-events: none;
+                        }
+                        &:checked + span {
+                            &:after {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+            .radio {
+                > label {
+                    > span {
+                        &:before,
+                        &:after {
+                            border-radius: 50%;
+                        }
+                        &:after {
+                            left: @radio-size*0.25;
+                            top: @radio-size*0.25 - 1;
+                            width: @radio-size/2;
+                            height: @radio-size/2;
+                            background: @primary_color;
+                            border: 1px solid @primary_color;
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .checkbox {
+                > label {
+                    > span {
+                        &:before {
+                            border-radius: @checkbox-radius;
+                        }
+                        &:after {
+	                        content: url('data:image/svg+xml,%3Csvg width="@{radio-size}" height="@{radio-size}" fill="@{primary_color_escaped}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"%3E%3Cpath d="M18.2,6.3l-1.5-1.5c-0.2-0.2-0.5-0.3-0.7-0.3c-0.3,0-0.5,0.1-0.7,0.3L8,12L4.8,8.8C4.6,8.6,4.3,8.4,4,8.4 c-0.3,0-0.5,0.1-0.7,0.3l-1.5,1.5c-0.2,0.2-0.3,0.5-0.3,0.7c0,0.3,0.1,0.5,0.3,0.7l4,4l1.5,1.5c0.2,0.2,0.5,0.3,0.7,0.3 c0.3,0,0.5-0.1,0.7-0.3l1.5-1.5l8-8c0.2-0.2,0.3-0.5,0.3-0.7S18.4,6.5,18.2,6.3L18.2,6.3z M18.2,6.3"/%3E%3C/svg%3E');
+	                        left: 0;
+                            top: -1px;
+                            width: @radio-size;
+                            height: @radio-size;
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .image-filter {
+                input:checked + img {
+                    border-color: @border-color;
+                    box-shadow: inset 0 2px 2px rgba(0, 0, 0, .3),
+                    inset 0 -2px 1px rgba(255, 255, 255, .4);
+                }
+            }
+            .rdf-label {
+                min-width: @label-height;
+                color: @text_color;
+                background: lighten(@shadow_color, 30%);
+                box-shadow: inset 0 -1px 2px rgba(255, 255, 255, .4),
+                inset 0 1px 0 rgba(0, 0, 0, .2);
+            }
+        }
+    }
+}

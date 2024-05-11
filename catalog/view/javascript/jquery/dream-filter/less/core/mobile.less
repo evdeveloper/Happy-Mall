@@ -1,0 +1,186 @@
+&.rdf-mobile-view {
+    position: fixed;
+    z-index: 10020;
+    top: 0;
+    .slidewrapper {
+        min-height: @irs-grid-height + 5;
+    }
+    .btn.rdf-mobile-toggle {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: auto;
+        height: 35px;
+        line-height: 25px;
+        padding: 5px 10px;
+        padding-left: 15px;
+        text-align: center;
+        box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    }
+    .rdf-form {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        width: 250px;
+        background: @bg-color;
+        border: 1px solid @border-color;
+        padding: 5px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 15px 0 rgba(0, 0, 0, 0.19);
+    }
+    .rdf-header,
+    .rdf-footer {
+        padding: 10px 0;
+        > * {
+            margin: 0;
+        }
+    }
+    .rdf-header {
+        border-bottom: 1px solid @border-color;
+    }
+    .rdf-footer {
+        margin: 0;
+        border-top: 1px solid @border-color;
+        text-align: right;
+        display: flex;
+        justify-content: space-between;
+        button {
+            display: inline-block;
+            width: auto;
+            margin: 0;
+            flex: auto;
+            + button {
+                margin-top: 0;
+                margin-left: 10px;
+            }
+        }
+    }
+    .rdf-filters {
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: inherit;
+        .rdf-picked {
+            padding-top: 10px;
+        }
+        .panel-heading {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .panel-group {
+            border: none;
+            box-shadow: none;
+            margin: 0;
+            padding: 10px 0;
+        }
+        &.scroll-content {
+            .rdf-picked {
+                padding-left: 0;
+                padding-right: 15px;
+            }
+            .panel-group {
+                padding-right: 15px;
+            }
+        }
+    }
+    .form-group {
+        .rdf-group {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+    &.filter-horizontal {
+        .rdf-filters  > .panel-group > .panel {
+            border: none;
+        }
+        .rdf-control-label,
+        .rdf-filter-container {
+            display: block;
+            position: relative;
+            float: none;
+            width: 100%;
+        }
+        .rdf-control-label {
+            padding: 10px;
+            text-align: inherit;
+            border-bottom: 1px solid lighten(@border-color, 5%);
+        }
+        .rdf-filter-container {
+            padding: 5px 0;
+        }
+        .rdf-group {
+            padding-top: 0;
+            padding-bottom: 0;
+            max-height: 120px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            .radio,
+            .checkbox,
+            .image-filter {
+                display: block;
+                position: relative;
+                flex-basis: 100%;
+                flex-shrink: 0;
+                padding-right: 20px;
+                margin: 0;
+            }
+            .rdf-clear,
+            .rdf-label {
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                height: @label-height;
+                line-height: @label-height;
+                margin-top: -(floor((@label-height - 5)/2));
+            }
+            &.scroll-content {
+                flex-basis: 100%;
+                padding-right: 15px;
+            }
+        }
+    }
+    &.rdf-side-left {
+        .rdf-mobile-toggle {
+            border-left: none;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+    }
+    &.rdf-side-right {
+        .rdf-mobile-toggle {
+            border-right: none;
+            left: auto;
+            right: 100%;
+            padding-left: 10px;
+            padding-right: 15px;
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+        }
+        .rdf-filters {
+            &.scroll-wrapper {
+                > .scroll-element.scroll-y {
+                    right: auto;
+                    left: 2px;
+                }
+            }
+            &.scroll-content {
+                .rdf-picked {
+                    padding-right: 0;
+                    padding-left: 15px;
+                }
+                .panel-group {
+                    padding-right: 0;
+                    padding-left: 15px;
+                }
+            }
+        }
+    }
+}
+.rdf-mobile-toggle {
+    display: none;
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+}

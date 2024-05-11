@@ -1,0 +1,53 @@
+/**
+ * Dream Filter v2.6
+ * @link http://dreamfilter.ru/
+ * @license Commercial
+ * @copyright Copyright (c) 2016-2023 reDream
+ * @author Ivan Grigorev <ig@redream.ru>
+ */
+
+@primary_color:     #428bca;
+
+@import "loaders";
+
+.popover {
+	min-width: 250px;
+	.popover-content .form-group {
+		padding: 0;
+		margin: 0;
+		margin-bottom: 5px;
+	}
+}
+.ui-sortable .ui-sortable-handle {
+	cursor: move;
+}
+.popover-parent {
+	text-align: left;
+	+ .popover-parent {
+		margin-top: 4px;
+		padding-top: 4px;
+		border-top: 1px solid #e8e8e8;
+	}
+}
+.form-group {
+	.control-label {
+		> input[type="checkbox"] {
+			vertical-align: middle;
+			margin-top: -2px;
+		}
+	}
+}
+.loader {
+	display: block;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	position: relative;
+	text-align: center;
+	> div {
+		display: inline-block;
+		margin: 0 auto;
+	}
+}
+.img-responsive {
+	margin: 0 auto;
+}

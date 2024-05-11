@@ -1,0 +1,73 @@
+.rdf-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 15px;
+    .slidewrapper {
+        flex-grow: 10;
+        flex-shrink: 1;
+        min-width: 200px;
+    }
+    @media (min-width: 768px) {
+        .range-group {
+            flex: 1 5 180px;
+            + .slidewrapper {
+                width: auto;
+                margin-left: 20px;
+                margin-top: -((@irs-height - @irs-line-height)/2);
+            }
+        }
+    }
+    .irs {
+        margin: 0;
+    }
+    .radio,
+    .checkbox,
+    .image-filter {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .rdf-clear,
+    .rdf-label {
+        display: inline-block;
+        position: relative;
+        height: 18px;
+        line-height: 18px;
+    }
+    .rdf-clear {
+        vertical-align: middle;
+        margin-bottom: 2px;
+    }
+}
+.panel-body {
+    .form-group + .form-group {
+        border-top: 1px solid @border-color;
+    }
+}
+.rdf-control-label {
+    font-weight: bold;
+    padding-top: 5px;
+    margin: 0;
+    @media (min-width: 768px) {
+        padding-top: 17px;
+        text-align: right;
+    }
+}
+.rdf-filter-container {
+    padding: 0;
+}
+.rdf-footer {
+    text-align: right;
+    button + button {
+        margin-top: 0;
+    }
+}
+#column-left &,
+#column-right & {
+    .rdf-control-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

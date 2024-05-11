@@ -1,0 +1,101 @@
+@irs-height:            40px;
+@irs-grid-height:       60px;
+
+@irs-handle-top:        22px;
+@irs-handle-width:      10px;
+@irs-handle-height:     18px;
+@irs-handle-radius:     2px;
+
+@irs-line-height:       10px;
+@irs-line-top:          25px;
+@irs-line-radius:       4px;
+
+@irs-bar-height:        10px;
+@irs-bar-top:           25px;
+@irs-bar-radius:        0;
+
+@irs-label-padding:     1px 3px;
+@irs-label-radius:      4px;
+@irs-label-fontsize:    10px;
+
+@popper_radius:         4px;
+@popper_padding:        10px;
+@popper_width:          180px;
+@popper_border_color:   @border-color;
+@popper_arrow_width:    10px;
+@popper_arrow_color:    @bg-color;
+
+@panel-padding:         10px 15px;
+
+@chip-padding:          0 5px;
+@chip-margin:           0 5px 5px 0;
+@chip-height:           24px;
+@chip-fontsize:         12px;
+
+@image-border-radius:   4px;
+@image-border:          3px solid transparent;
+@image-color:           @primary_color;
+
+@label-height:          20px;
+@label-padding:         0 5px;
+@label-margin:          0;
+@label-fontsize:        90%;
+@label-border-radius:   4px;
+
+.slider-handle() {
+    border: 1px solid @border-color;
+    background: @accent_color;
+    transition: background 0.2s;
+    &.state_hover,
+    &:hover {
+        background: darken(@accent_color, 7%);
+    }
+    &:before,
+    &:after {
+        display: none !important;
+    }
+}
+.slider-ending() {
+    color: @irs-grid-color;
+    background: lighten(@irs-grid-color, 35%);
+}
+.slider-label() {
+    color: @irs-text-color;
+    background: @irs-bar-color;
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -3px;
+        overflow: hidden;
+        border: 3px solid transparent;
+        border-top-color: @irs-bar-color;
+    }
+}
+.pop-arrow() {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.dream-filter {
+    .rdf-group {
+        .radio,
+        .checkbox {
+            > label {
+                > span {
+                    &:before,
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

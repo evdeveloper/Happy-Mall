@@ -1,0 +1,196 @@
+> .rdf-form {
+    &.initialized {
+        .rdf-body {
+            display: block !important;
+        }
+    }
+    .rdf-header,
+    .rdf-footer,
+    .rdf-body {
+        display: block;
+        position: relative;
+    }
+    .rdf-footer {
+        margin-bottom: 15px;
+        button + button {
+            margin-top: 10px;
+        }
+    }
+}
+.panel-body {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    .form-group {
+        display: block;
+        margin: 0;
+        > .rdf-group {
+            display: block;
+        }
+    }
+}
+.panel-title {
+    display: block;
+    > span, a {
+        display: block;
+        cursor: pointer;
+    }
+    svg {
+        width: 14px;
+        height: 16px;
+        float: right;
+        margin-left: 4px;
+    }
+    &:before,
+    &:after {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+.rdf-group {
+    position: relative;
+    margin: 0;
+    .radio,
+    .checkbox,
+    .image-filter {
+        input:disabled {
+            +img,
+            +span,
+            ~span {
+                opacity: 0.6;
+            }
+        }
+        > label {
+            float: none;
+            > span,
+            > input + span {
+                position: initial;
+                margin: 0;
+                background: none;
+                width: auto;
+                height: auto;
+                border: none;
+                box-shadow: none;
+                outline: none;
+            }
+        }
+    }
+    .slidewrapper {
+        width: 100%;
+        min-height: @irs-height;
+    }
+    .rdf-clear,
+    .rdf-label {
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+    }
+    .rdf-clear {
+        cursor: pointer;
+        padding: 0 3px;
+        font-size: 150%;
+        color: @text_color;
+        &:hover {
+            color: @action_color;
+        }
+        &:empty,
+        + .rdf-label {
+            display: none !important;
+        }
+    }
+    .rdf-label {
+        margin: @label-margin;
+        padding: @label-padding;
+        font-size: @label-fontsize;
+        font-weight: 500;
+        background: @label-bg;
+        color: @label-color;
+        border-radius: @label-border-radius;
+        &:empty {
+            display: none !important;
+        }
+    }
+    .input-group {
+        width: 100%;
+        .form-control:first-child:last-child {
+            border-radius: 4px;
+        }
+        .rdf-clear.input-group-addon {
+            display: table-cell;
+            position: unset;
+            height: inherit;
+            margin: 0;
+            width: 20px;
+            text-align: center;
+            vertical-align: middle;
+            top: 0;
+        }
+    }
+}
+.range-group {
+    margin-bottom: -(floor(@irs-handle-top/2) - 3);//Чтоб был ближе к слайдеру
+}
+.rdf-picked {
+    &:empty {
+        display: none;
+    }
+    .btn {
+        position: relative;
+        padding: @chip-padding;
+        padding-right: 17px;
+        margin: @chip-margin;
+        font-size: @chip-fontsize;
+        height: @chip-height;
+        line-height: @chip-height;
+        border-radius: 3px;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        > i {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: @chip-height;
+            padding: @chip-padding;
+            font-size: 14px;
+            margin-left: 3px;
+        }
+    }
+}
+
+.image-filter {
+    display: block;
+    position: relative;
+    margin-bottom: 5px;
+    label&,
+    label {
+        cursor: pointer;
+        margin: 0;
+    }
+    img {
+        display: inline-block;
+        vertical-align: middle;
+        overflow: hidden;
+        padding: 0;
+        border-radius: @image-border-radius;
+        border: @image-border;
+        opacity: 0.8;
+        margin-right: 5px;
+        transition: 0.2s;
+    }
+    input {
+        display: none;
+        &:checked + img {
+            border-color: @image-color;
+            background-color: @image-color;
+            opacity: 1;
+        }
+    }
+}
+svg {
+    display: inline-block;
+    overflow: hidden;
+    fill: currentColor;
+}

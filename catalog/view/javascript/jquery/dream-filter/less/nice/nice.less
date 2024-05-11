@@ -1,0 +1,117 @@
+@irs-height:            40px;
+@irs-grid-height:       60px;
+
+@irs-handle-top:        18px;
+@irs-handle-width:      22px;
+@irs-handle-height:     22px;
+@irs-handle-radius:     50%;
+
+@irs-line-height:       8px;
+@irs-line-top:          25px;
+@irs-line-radius:       4px;
+
+@irs-bar-height:        8px;
+@irs-bar-top:           25px;
+@irs-bar-radius:        0;
+
+@irs-label-padding:     1px 3px;
+@irs-label-radius:      4px;
+@irs-label-fontsize:    10px;
+
+@popper_radius:         4px;
+@popper_padding:        10px;
+@popper_width:          180px;
+@popper_border_color:   @border-color;
+@popper_arrow_width:    10px;
+@popper_arrow_color:    @bg-color;
+
+@panel-padding:         10px 15px;
+
+@chip-padding:          0 5px;
+@chip-margin:           0 5px 5px 0;
+@chip-height:           24px;
+@chip-fontsize:         12px;
+
+@image-border-radius:   4px;
+@image-border:          3px solid transparent;
+@image-color:           @primary_color;
+
+@label-height:          20px;
+@label-padding:         0 5px;
+@label-margin:          0;
+@label-fontsize:        90%;
+@label-border-radius:   4px;
+
+.slider-handle() {
+    border: 1px solid @border-color;
+    background: @accent_color;
+    transition: background 0.2s;
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: @primary_color;
+        border-radius: 50%;
+        top: @irs-handle-width/2 - 5;
+        left: @irs-handle-width/2 - 5;
+        right: auto;
+        bottom: auto;
+        transition: inherit;
+        padding: 0;
+        margin: 0;
+    }
+    &:after {
+        display: none !important;
+    }
+    &.state_hover,
+    &:hover {
+        &:before {
+            background: @action_color;
+        }
+    }
+}
+.slider-ending() {
+    color: @irs-grid-color;
+    background: lighten(@irs-grid-color, 25%);
+}
+.slider-label() {
+    color: @irs-text-color;
+    background: @irs-bar-color;
+}
+.pop-arrow() {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.dream-filter {
+    .rdf-group {
+        .radio,
+        .checkbox {
+            > label {
+                > span {
+                    &:before,
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .irs {
+        .irs-line {
+            background: darken(@primary_color, 5%);
+            box-shadow: @irs-bar-shadow;
+        }
+        .irs-bar,
+        .irs-bar-edge {
+            background: @accent_color;
+            border: 1px solid @border-color;
+            box-shadow: @irs-bar-shadow;
+        }
+    }
+}

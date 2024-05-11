@@ -1,0 +1,274 @@
+@irs-height:            40px;
+@irs-grid-height:       64px;
+
+@irs-handle-top:        25px;
+@irs-handle-width:      14px;
+@irs-handle-height:     14px;
+@irs-handle-radius:     2px 7px;
+
+@irs-line-height:       14px;
+@irs-line-top:          25px;
+@irs-line-radius:       2px 7px;
+
+@irs-bar-height:        14px;
+@irs-bar-top:           25px;
+@irs-bar-radius:        2px 7px;
+
+@irs-label-padding:     1px 0;
+@irs-label-radius:      0;
+@irs-label-fontsize:    10px;
+
+@popper_radius:         2px 12px;
+@popper_padding:        8px;
+@popper_width:          180px;
+@popper_border_color:   @primary_color;
+@popper_arrow_width:    5px;
+@popper_arrow_color:    @bg-color;
+
+@panel-padding:         10px 15px;
+@panel-radius:          2px 15px;
+
+@chip-padding:          0 7px;
+@chip-margin:           0 5px 5px 0;
+@chip-height:           20px;
+@chip-fontsize:         10px;
+
+@radio-size:            18px;
+@radio-margin:          1px;
+
+@image-border-radius:   2px 10px;
+@image-border:          none;
+@image-color:           @radio-color;
+
+@label-height:          18px;
+@label-padding:         0 7px;
+@label-margin:          0;
+@label-fontsize:        90%;
+@label-border-radius:   2px 9px;
+
+@primary_color_escaped: escape('@{primary_color}');
+@second_color_escaped: escape('@{second_color}');
+@accent_color_escaped: escape('@{accent_color}');
+
+.slider-handle() {
+    border: none;
+    background: @primary_color;
+    transition: background 0.2s;
+    &:before,
+    &:after {
+        display: none !important;
+    }
+    &.state_hover,
+    &:hover {
+        background: darken(@primary_color, 2.5%);
+    }
+}
+.slider-ending() {
+    color: @irs-grid-color;
+    border-bottom: 2px solid transparent;
+}
+.slider-label() {
+    color: @irs-bar-color;
+    background: transparent;
+    border-bottom: 2px solid @irs-bar-color;
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -3px;
+        overflow: hidden;
+        border: 3px solid transparent;
+        border-top-color: @irs-bar-color;
+    }
+}
+.pop-arrow() {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.dream-filter {
+    .panel-group {
+        .panel {
+            border-radius: @panel-radius;
+            border-color: @primary_color;
+            border-bottom-width: 2px;
+        }
+        .panel-heading {
+            padding: 0;
+            color: @accent_color;
+            background: @primary_color;
+            border-radius: @panel-radius;
+            overflow: visible;
+            span, a {
+                display: block;
+                position: relative;
+                padding: @panel-padding;
+                text-decoration: none !important;
+                > svg {
+                    transform: rotate(180deg);
+                }
+                &:after {
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    height: 1px;
+                    right: 0;
+                    left: 15px;
+                    bottom: -3px;
+                    background: @primary_color;
+                }
+                &.collapsed {
+                    &:after {
+                        display: none;
+                    }
+                    > svg {
+                        transform: none;
+                    }
+                }
+            }
+        }
+        .panel-body {
+            border: none !important;
+        }
+    }
+    .rdf-filters {
+        .rdf-picked {
+            > .btn {
+                color: @accent_color;
+                border: none;
+                border-radius: 2px @chip-height/2;
+                text-shadow: none;
+                box-shadow: none;
+                background: @primary_color;
+                outline: none;
+                transition: all 0.2s ease-in-out;
+            }
+        }
+        .form-control,
+        .input-group-addon {
+            border: 1px solid @border-color;
+            border-radius: 2px 15px !important;
+            outline: none;
+            box-shadow: none;
+        }
+        .form-control {
+            background-color: transparent;
+            &:focus {
+                border-color: @primary_color;
+                outline: 0;
+            }
+        }
+        .input-group-addon {
+            background: @border-color;
+            &.rdf-clear {
+                padding: 0 6px;
+            }
+        }
+        .rdf-group {
+            .input-group {
+                border: 1px solid @border-color;
+                border-radius: 2px 15px !important;
+                > * {
+                    border: none !important;
+                    &:not(:first-child) {
+                        //border-top-left-radius: 0 !important;
+                        //border-bottom-left-radius: 0 !important;
+                        border-left: none;
+                    }
+                    &:not(:last-child) {
+                        //border-top-right-radius: 0 !important;
+                        //border-bottom-right-radius: 0 !important;
+                        border-right: none;
+                    }
+                }
+            }
+            .radio,
+            .checkbox {
+                > label {
+                    position: relative;
+                    min-height: @radio-size + @radio-margin*2;
+                    padding-left: @radio-size + @radio-margin*5;
+                    > span {
+                        &:before,
+                        &:after {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            margin: @radio-margin;
+                            width: @radio-size;
+                            height: @radio-size;
+                            z-index: 0;
+                            -webkit-transition: .15s ease;
+                            transition: .15s ease;
+                        }
+                        &:before {
+                            left: 0;
+                            top: 0;
+                            background: lighten(@radio-color, 15%);
+                        }
+                        &:after {
+                            left: 0;
+                            top: 0;
+                        }
+                    }
+                    input {
+                        &:not(:checked),
+                        &:checked {
+                            position: absolute;
+                            opacity: 0;
+                            pointer-events: none;
+                        }
+                        &:checked + span {
+                            &:before {
+                                opacity: 0.8;
+                            }
+                            &:after {
+                                left: 2px;
+                                top: 2px;
+                                transform: scale(1);
+                            }
+                        }
+                    }
+                }
+            }
+            .radio {
+                > label {
+                    > span {
+                        &:before,
+                        &:after {
+                            border-radius: 50%;
+                        }
+                        &:after {
+                            transform: scale(0);
+                            background: @primary_color;
+                            border: 2px solid @primary_color;
+                        }
+                    }
+                }
+            }
+            .checkbox {
+                > label {
+                    > span {
+                        &:after {
+                            content: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="@{radio-size}" height="@{radio-size}" fill="@{accent_color_escaped}" viewBox="0 0 20 20"%3E%3Cpath d="M2,11.6c-0.1-0.1-0.2-0.3-0.2-0.4c0-0.1,0.1-0.3,0.2-0.4l0.9-0.9c0.3-0.3,0.6-0.3,0.9,0l0.1,0.1l3.5,3.7 c0.1,0.1,0.3,0.1,0.4,0l8.5-8.8h0.1c0.3-0.2,0.6-0.2,0.9,0L18,5.8c0.3,0.3,0.3,0.6,0,0.9L7.9,17.1c-0.1,0.1-0.3,0.2-0.4,0.2 c-0.2,0-0.3-0.1-0.4-0.2l-4.9-5.3L2,11.6z M2,11.6"/%3E%3C/svg%3E');
+                            background: @primary_color;
+                            transform: scale(0);
+                        }
+                    }
+                }
+            }
+            .image-filter {
+                input:checked + img {
+                }
+            }
+        }
+    }
+}

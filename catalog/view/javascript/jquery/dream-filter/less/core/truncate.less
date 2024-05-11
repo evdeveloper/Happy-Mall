@@ -1,0 +1,128 @@
+.rdf-truncate-height {
+    overflow-y: auto;
+    .rdf-group {
+        overflow-y: hidden;
+    }
+}
+
+.rdf-truncate-element {
+    .rdf-group {
+        max-height: 0;
+        overflow-y: hidden;
+    }
+    .rdf-truncate-show,
+    .rdf-truncate-hide {
+        padding: 5px 15px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .rdf-truncate-show {
+        display: block;
+    }
+    .rdf-truncate-hide {
+        display: none;
+    }
+    &.rdf-full,
+    &.rdf-show {
+        .rdf-truncate-show {
+            display: none;
+        }
+    }
+    &.rdf-show {
+        .rdf-truncate-hide {
+            display: block;
+        }
+    }
+}
+
+.rdf-truncate-width {
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.scroll-wrapper {
+    /*
+    > .scroll-content {
+        border: none !important;
+        box-sizing: content-box !important;
+        height: auto;
+        left: 0;
+        margin: 0;
+        max-height: none;
+        max-width: none !important;
+        overflow: scroll !important;
+        padding: 0;
+        position: relative !important;
+        top: 0;
+        width: auto !important;
+        &::-webkit-scrollbar {
+            height: 0;
+            width: 0;
+        }
+    }
+    */
+    .scroll-element {
+        display: none;
+        &,
+        div {
+            box-sizing: content-box;
+            border: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            z-index: 10;
+        }
+        div {
+            display: block;
+            height: 100%;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        &.scroll-y {
+            height: 100%;
+            right: 2px;
+            top: 0;
+            width: 8px;
+        }
+        &.scroll-x {
+            width: 100%;
+            left: 0;
+            bottom: 2px;
+            height: 8px;
+        }
+        .scroll-element_outer {
+            overflow: hidden;
+        }
+        .scroll-element_outer,
+        .scroll-element_track,
+        .scroll-bar {
+            border-radius: 8px;
+        }
+        .scroll-element_track,
+        .scroll-bar {
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+            filter: alpha(opacity=40);
+            opacity: 0.4;
+        }
+        .scroll-element_track {
+            background-color: lighten(@scrollbar_color, 15%);
+        }
+        .scroll-bar {
+            background-color: @scrollbar_color;
+        }
+        &:hover .scroll-bar,
+        &.scroll-draggable .scroll-bar {
+            background-color: darken(@scrollbar_color, 20%);
+        }
+        &.scroll-x.scroll-scrollx_visible,
+        &.scroll-y.scroll-scrolly_visible {
+            display: block;
+        }
+        &.scroll-x.scroll-scrolly_visible .scroll-element_track {
+            left: -12px;
+        }
+        &.scroll-y.scroll-scrollx_visible .scroll-element_track {
+            top: -12px;
+        }
+    }
+}

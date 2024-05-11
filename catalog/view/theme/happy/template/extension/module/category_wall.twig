@@ -1,3 +1,27 @@
+{# <div class="category-wall">
+    <h3>{{ heading_title }}</h3>
+    <div class="row">
+        {% set i = 0 %}
+        {% for category in categories %} 
+            <div class="col-sm-3 col-xs-12">
+                <div class="category-item">
+                    <a class="cat-image" href="{{ category.href }}">
+                        <img src="{{ category.image }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" />
+                    </a>
+                    <div class="cat-caption">
+                        <a class="cat-name" href="{{ category.href }}">{{ category.name }}</a>
+                    </div> 
+                </div>
+            </div>
+            {% set i = i + 1 %} 
+            {% if i % 4 ==  0 %}
+                <div class="clearfix"></div>
+            {% endif %} 
+        {% endfor %} 
+        <div class="clearfix"></div>
+    </div>
+</div> #}
+
 <section class="s-category section__default">
   <div class="container">
     <h2 class="section__title">{{ heading_title }}</h2>
