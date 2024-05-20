@@ -362,7 +362,7 @@
 					    widget.detach().prependTo('body');
 					    widget.addClass('rdf-mobile-view');
 					    widget.css('top', options.mobile.indenting_top + 'px');
-					    widget.css(options.mobile.side, '-255px');
+					    widget.css(options.mobile.side, '-305px');
 				    }
 				    $('#' + options.mobile.button_id).css('top', options.mobile.indenting_button + 'px')
 
@@ -420,6 +420,9 @@
 
 	    //Mobile fixed event
         if(options.mobile.mode === 'fixed') {
+            $(document).on('click', '.catalogSelect__filter', function(){
+              $(`#${options.mobile.button_id}`).click();
+            });
             $(document).on('click', '#' + options.mobile.button_id + ', .rdr-backdrop', function() {
                 widget.toggleClass('show');
 
@@ -439,9 +442,9 @@
 		                });
 	                }
                     if(options.mobile.side === 'right') {
-                        widget.animate({ right: '-255px' });
+                        widget.animate({ right: '-305px' });
                     } else {
-                        widget.animate({ left: '-255px' });
+                        widget.animate({ left: '-305px' });
                     }
                 }
             });

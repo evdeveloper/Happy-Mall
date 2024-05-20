@@ -361,7 +361,7 @@ class ControllerProductProduct extends Controller {
 						$product_option_value_data[] = array(
 							'product_option_value_id' => $option_value['product_option_value_id'],
 							'option_value_id'         => $option_value['option_value_id'],
-							'name'                    => $option_value['name'],
+							'name'                    => html_entity_decode($option_value['name'], ENT_QUOTES, 'UTF-8'),
 							'image'                   => $this->model_tool_image->resize($option_value['image'], 50, 50),
 							'price'                   => $price,
 							'price_prefix'            => $option_value['price_prefix']
@@ -459,6 +459,7 @@ class ControllerProductProduct extends Controller {
 					'price'       => $price,
 					'special'     => $special,
 					'tax'         => $tax,
+					'sku'         => $result['sku'],
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $rating,
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
