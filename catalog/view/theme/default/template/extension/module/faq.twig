@@ -1,0 +1,23 @@
+{% if items is not empty %}
+  <div class="answer">  
+    {% if title is not empty %}
+      <h1 class="answer__title">{{ title }}</h1>
+    {% endif %}
+    <div id="accordion" class="answer__inner">
+      {% for item in items %}
+        {% if (item.question | trim) %}
+          <div class="answer__item">
+            <div class="answer__top">
+              {{ item.question }}
+              <div class="answer__open"></div>
+            </div>
+            <div class="answer__body">{{ item.answer }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+  
+
