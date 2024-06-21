@@ -6,9 +6,9 @@ class ControllerCommonHeader extends Controller {
 
 		$data['analytics'] = array();
 
-		$this->document->addStyle('catalog/view/theme/happy/stylesheet/styles.min.css');
-		$this->document->addScript('catalog/view/javascript/libs.min.js');
-		$this->document->addScript('catalog/view/javascript/main.js');
+		$this->document->addStyle('catalog/view/theme/happy/stylesheet/styles.min.css?ver=1.02');
+		$this->document->addScript('catalog/view/javascript/libs.min.js?ver=1.02');
+		$this->document->addScript('catalog/view/javascript/main.js?ver=1.02');
 
 		$analytics = $this->model_setting_extension->getExtensions('analytics');
 
@@ -64,6 +64,8 @@ class ControllerCommonHeader extends Controller {
 		
 		$data['home'] = $this->url->link('common/home');
 		$data['faq'] = $this->url->link('information/faq');
+		$data['tracker'] = $this->url->link('information/tracker');
+		$data['calculator'] = $this->url->link('information/calculator');
 		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
 		$data['logged'] = $this->customer->isLogged();
 		$data['account'] = $this->url->link('account/account', '', true);

@@ -15,6 +15,9 @@ class ControllerCommonFooter extends Controller {
 		}
 
 		$data['home'] = $this->url->link('common/home');
+		$data['faq'] = $this->url->link('information/faq');
+		$data['tracker'] = $this->url->link('information/tracker');
+		$data['calculator'] = $this->url->link('information/calculator');
 		$data['logged'] = $this->customer->isLogged();
 		$data['login'] = $this->url->link('account/login', '', true);
 		$data['logout'] = $this->url->link('account/logout', '', true);
