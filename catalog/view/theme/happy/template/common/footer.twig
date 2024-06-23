@@ -27,13 +27,13 @@
           </svg>
         </div>
         <div class="nav-footer__list">
-          <a class="nav-footer__link" href="#">Канцтовары</a>
-          <a class="nav-footer__link" href="#">Косметика, всё для макияжа</a>
-          <a class="nav-footer__link" href="#">Украшения</a>
-          <a class="nav-footer__link" href="#">Аксессуары (сумки, очки, перчатки)</a>
-          <a class="nav-footer__link" href="#">Детские игрушки</a>
-          <a class="nav-footer__link" href="#">Аксессуары для телефонов и ПК</a>
-          <a class="nav-footer__link" href="#">Товары для животных</a>
+          <a class="nav-footer__link" target="_blank" href="https://happy.3mma.ru/index.php?route=product/category&path=1">Канцтовары</a>
+          <a class="nav-footer__link" target="_blank" href="https://happy.3mma.ru/index.php?route=product/category&path=99">Косметика, всё для макияжа</a>
+          <a class="nav-footer__link" target="_blank" href="https://happy.3mma.ru/index.php?route=product/category&path=103">Украшения</a>
+          <a class="nav-footer__link" target="_blank" href="https://happy.3mma.ru/index.php?route=product/category&path=106">Аксессуары (сумки, очки, перчатки)</a>
+          <a class="nav-footer__link" target="_blank" href="https://happy.3mma.ru/index.php?route=product/category&path=102">Детские игрушки</a>
+          <a class="nav-footer__link" target="_blank" href="https://happy.3mma.ru/index.php?route=product/category&path=100">Аксессуары для телефонов и ПК</a>
+          <a class="nav-footer__link" target="_blank" href="https://happy.3mma.ru/index.php?route=product/category&path=101">Товары для животных</a>
         </div>
       </div>
     </nav>
@@ -87,50 +87,51 @@
     <ul class="mobileMenu__list">
       <li class="mobileMenu__item">
         <div class="mobileMenu__link"><span>Каталог</span>
-          <svg class="svg-sprite-icon  icon-arrow-down-normal mobileMenu__icon">
+          <svg class="svg-sprite-icon icon-arrow-down-normal mobileMenu__icon">
             <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-down-normal"></use>
           </svg>
         </div>
         <div class="mobileSubmenu">
           <ul class="mobileSubmenu__list">
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Канцтовары</a></li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Косметика, всё для макияжа</a>
-            </li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Украшения</a></li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Аксессуары</a></li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Детские игрушки </a></li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Аксессуары для телефонов и ПК</a>
-            </li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Товары для животных</a></li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Товары для дома</a></li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Всё для активного отдыха </a></li>
+            {% for category in categories|batch((categories|length / 4)|round(1, 'ceil')) %}
+              {% for child in category %}
+                <li class="mobileSubmenu__item">
+                  <a class="mobileSubmenu__link" href="{{ child.href }}">{{ child.name }}</a>
+                </li>
+              {% endfor %}
+            {% endfor %}
           </ul>
         </div>
       </li>
-      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#">Калькулятор доставки</a></li>
-      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#">Отследить груз</a></li>
+      <li class="mobileMenu__item"><a class="mobileMenu__link" href="{{ calculator }}">Калькулятор доставки</a></li>
+      <li class="mobileMenu__item"><a class="mobileMenu__link" href="{{ tracker }}">Отследить груз</a></li>
       <li class="mobileMenu__item"><a class="mobileMenu__link" href="#">Услуги</a></li>
       <li class="mobileMenu__item">
-        <div class="mobileMenu__link"> <span>Еще</span>
-          <svg class="svg-sprite-icon  icon-arrow-down-normal mobileMenu__icon">
+        <div class="mobileMenu__link"><span>Еще</span>
+          <svg class="svg-sprite-icon icon-arrow-down-normal mobileMenu__icon">
             <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-down-normal"></use>
           </svg>
         </div>
         <div class="mobileSubmenu">
           <ul class="mobileSubmenu__list">
             <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">О нас</a></li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Вопросы-ответы</a></li>
-            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="#">Контакты</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="{{ faq }}">Вопросы-ответы</a></li>
+            <li class="mobileSubmenu__item"><a class="mobileSubmenu__link" href="{{ contact }}">Контакты</a></li>
           </ul>
         </div>
       </li>
-      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#" data-popup-open="feedback">Связаться с
-          нами</a></li>
-      <li class="mobileMenu__item"><a class="mobileMenu__link" href="#" data-popup-open="auth"> <span>Личный
-            кабинет</span>
+      <li class="mobileMenu__item">
+        <a class="mobileMenu__link" href="#" data-popup-open="feedback">Связаться с
+          нами</a>
+        </li>
+      <li class="mobileMenu__item">
+        <a class="mobileMenu__link" href="#" data-popup-open="auth"> 
+          <span>Личный кабинет</span>
           <svg class="svg-sprite-icon  icon-user mobileMenu__user">
             <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#user"></use>
-          </svg></a></li>
+          </svg>
+        </a>
+      </li>
     </ul>
   </nav>
   <a class="mobileMenu__phone" href="tel:{{ telephone|replace({' ': '', '-': '', '(': '', ')':''}) }}">{{ telephone }}</a>
@@ -153,162 +154,50 @@
   </div>
 </div>
 <div class="catalogMenu">
-  <div class="catalogMenu__tabs">
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/1.svg" alt="Канцтовары"><span>Канцтовары</span>
+  {% if categories %}
+    <div class="catalogMenu__tabs">
+      {% for category in categories|batch((categories|length / 4)|round(1, 'ceil')) %}
+        {% for child in category %}
+          <div class="catalogMenu__tab">
+            <img src="https://happy.3mma.ru/image/{{ child.image }}" alt="{{ child.name }}"/>
+            <span>{{ child.name }}</span>
+          </div>
+        {% endfor %}
+      {% endfor %}
     </div>
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/2.svg" alt="Косметика, всё для макияжа"><span>Косметика, всё для макияжа</span>
+    <div class="catalogMenu__content">
+      {% for category in categories %}
+        <div class="catalogMenu__col">
+          <div class="catalogMenu__top">
+            <h2 class="catalogMenu__title">
+              <a href="{{ category.href }}">{{ category.name }}</a>
+              <svg class="svg-sprite-icon catalogMenu__title-icon">
+                <use xlink:href="catalog/view/theme/happy/image/svg/sprite.svg#arrow-right-normal"></use>
+              </svg>
+            </h2>
+          </div>
+          <ul class="catalogMenu__list">
+            {% if category.children %}
+              {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                {% for child in children %}
+                  {% if child.children %}
+                    <li class="catalogMenu__item"><a class="catalogMenu__link" href="{{ child.href }}">{{ child.name }}</a></li>
+                    {% for children in child.children %}
+                      <li class="catalogMenu__item"><a class="catalogMenu__link" href="{{ children.href }}">{{ children.name }}</a></li>
+                    {% endfor %}
+                  {% else %}
+                    <li class="catalogMenu__item"><a class="catalogMenu__link" href="{{ child.href }}">{{ child.name }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            {% else %}
+              <li class="catalogMenu__item">Список подкатегорий пуст...</li>
+            {% endif %}
+          </ul>
+        </div>
+      {% endfor %}
     </div>
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/3.svg" alt="Украшения"><span>Украшения</span>
-    </div>
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/4.svg" alt="Аксессуары"><span>Аксессуары</span>
-    </div>
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/5.svg" alt="Детские игрушки"><span>Детские игрушки</span>
-      </div>
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/6.svg" alt="Аксессуары для телефонов и ПК"><span>Аксессуары для телефонов и ПК</span>
-    </div>
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/7.svg" alt="Товары для животных"><span>Товары для животных</span>
-    </div>
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/8.svg" alt="Товары для дома"><span>Товары для дома</span>
-    </div>
-    <div class="catalogMenu__tab">
-      <img src="catalog/view/theme/happy/image/svg/category/9.svg" alt="Всё для активного отдыха"><span>Всё для активного отдыха</span>
-    </div>
-  </div>
-  <div class="catalogMenu__content">
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Канцтовары</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Косметика, всё для макияжа</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Украшения</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Аксессуары</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Детские игрушки</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Аксессуары для телефонов и ПК</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Товары для животных</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Товары для дома</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-    <div class="catalogMenu__col">
-      <div class="catalogMenu__top">
-        <h2 class="catalogMenu__title">Всё для активного отдыха</h2>
-        <div class="catalogMenu__count">2580 товаров</div>
-      </div>
-      <ul class="catalogMenu__list">
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-        <li class="catalogMenu__item"><a class="catalogMenu__link" href="#">Пример</a></li>
-      </ul>
-    </div>
-  </div>
+  {% endif %}
 </div>
 <div class="popup popup--reg" data-popup-target="reg">
   <div class="popup__top">
